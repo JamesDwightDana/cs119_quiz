@@ -21,9 +21,6 @@ def clean_text(text):
     return text
 
 def calc_valence(text, afinn):
-    #
-    # Write your program here
-    #
     words = text.split ()
     val = (0+0j)
     for word in words:
@@ -38,11 +35,12 @@ def valence(text):
 
 def main(argv):
     line = sys.stdin.readline()
-    pattern = re.compile("[a-zA-Z][a-zA-Z0-9]*")
+    pattern = re.compile("[a-zA-Z](?=_speech)")
     try:
         while line:
-            for word in pattern.findall(line):
-                print ("LongValueSum:" + word.lower() + "\t" + "1")
+            input_file = os.environ['mapreduce_map_input_file']
+            for word in pattern.findall(input_file):
+                print (word + "\t" + "1")
             line = sys.stdin.readline()
     except EOFError as error:
         return None
