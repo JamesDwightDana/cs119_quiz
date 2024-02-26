@@ -4,7 +4,6 @@
 from operator import itemgetter
 import sys
 
-
 current_key = None
 current_value = 0
 n_copies = 1
@@ -33,10 +32,10 @@ for line in sys.stdin:
         if current_key:
             # write result to STDOUT
             print ('%s\t%s' % (current_key, current_value, current_value/n_copies))
-        current_count = value
-        current_word = word
+        current_value = value
+        current_key = key
         n_copies = 1
 
 # do not forget to output the last word if needed!
-if current_word == word:
-    print ('%s\t%s' % (current_word, current_value/n_copies))
+if current_key == key:
+    print ('%s\t%s' % (current_key, current_value/n_copies))
