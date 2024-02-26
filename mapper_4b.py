@@ -6,8 +6,8 @@ def main(argv):
     line = sys.stdin.readline()
     try:
         while line:
-            word, count = line.split('\t', 1)
-            print(count+"\t"+word)
+            linestring = line.strip()
+            print(linestring.split('\t')[1]+"\t"+linestring.split('\t')[0])
             line = sys.stdin.readline()
     except EOFError as error:
         return None

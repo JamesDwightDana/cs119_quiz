@@ -10,7 +10,6 @@ for line in sys.stdin:
     line = line.strip()
     try:
         # parse the input we got from mapper.py
-        count, word = line.split('\t', 1)
-        print ('%s\t%s' % (count, word))
+        print(line)
     except:
         pass
