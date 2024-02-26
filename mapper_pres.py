@@ -44,7 +44,7 @@ def main(argv):
     pattern = re.compile("[a-z]+(?=_speech)")
     try:
         while line:
-            for president in pattern.findall(line):
+            for president in pattern.findall("roosevelt_speech/speech.txt"):
                 try:
                     line_value = valence(line)
                     line_value = str(line_value.real/line_value.imag)
