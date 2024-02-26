@@ -49,8 +49,14 @@ def main(argv):
 if __name__ == "__main__":
     afinn_path = "~/afinn/afinn/data/AFINN-en-165.txt"
     try:
-        afinn_word_list = load_afinn_word_list(afinn_path)
-        main(sys.argv)
+        afinn_word_list = {}
+        with open(afinn_path, 'r', encoding='utf-8') as file:
+            for line in file:
+                parts = line.strip().split('\t')
+                if len(parts) == 2:
+                    word, score = parts
+                    afinn_word_list[word] = int(score)
+        print("AFINN OPENED.")
     except:
-        print("WRONG ADDRESS\t1")
-        main(sys.argv)
+        pass
+    main(sys.argv)
