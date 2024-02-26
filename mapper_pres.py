@@ -39,19 +39,17 @@ def valence(text):
 
 def main(argv):
     line = sys.stdin.readline()
-    # Fake First Line
-    pattern = "[a-z]+(?=_speeches)"
     try:
         while line:
-            current_file = os.environ['mapreduce_map_input_file']
-            print(current_file+"\t1")
+            print("TEST"+"\t1")
             line = sys.stdin.readline()
     except EOFError as error:
         return None
 
 if __name__ == "__main__":
-    print("TEST1\t1")
     afinn_path = "/user/jamesdwightdana/afinn/AFINN-en-165.txt"
-    print("TEST2\t2")
-    afinn_word_list = load_afinn_word_list(afinn_path)
+    try:
+        afinn_word_list = load_afinn_word_list(afinn_path)
+    except:
+        print("01ISSUE LOADING\t1")
     main(sys.argv)
