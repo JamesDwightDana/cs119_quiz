@@ -45,7 +45,7 @@ def main(argv):
     try:
         while line:
             line_value = valence(line)
-            line_value = str(valence(line_value).real/valence(line_value).imag)
+            line_value = str(line_value.real/line_value.imag)
             print("president\t"+line_value)
             line = sys.stdin.readline()
     except EOFError as error:
