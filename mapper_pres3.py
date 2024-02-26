@@ -13,9 +13,6 @@ def load_afinn_word_list (afinn_path):
             #    afinn_word_list[word] = int(score)
     return afinn_word_list
 
-afinn_path = '/user/jamesdwightdana/AFINN-en-165.txt'
-afinn_word_list = load_afinn_word_list(afinn_path)
-
 def main(argv):
     line = sys.stdin.readline()
     pattern = re.compile("[a-zA-Z][a-zA-Z0-9]*")
@@ -28,4 +25,8 @@ def main(argv):
         return None
 
 if __name__ == "__main__":
+
+    afinn_path = '/user/jamesdwightdana/AFINN-en-165.txt'
+    afinn_word_list = load_afinn_word_list(afinn_path)
+
     main(sys.argv)
