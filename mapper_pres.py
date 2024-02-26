@@ -11,8 +11,8 @@ def load_afinn_word_list (afinn_path):
                 afinn_word_list[word] = int(score)
     return afinn_word_list
 
-afinn_path = "./afinn/afinn/data/AFINN-en-165.txt"
-afinn_word_list = load_afinn_word_list(afinn_path)
+# afinn_path = "./afinn/afinn/data/AFINN-en-165.txt"
+# afinn_word_list = load_afinn_word_list(afinn_path)
 
 def clean_text(text):
     text = text.lower()
@@ -45,7 +45,7 @@ def main(argv):
     try:
         while line:
             current_file = os.environ['mapreduce_map_input_file']
-            print("TEST\t1")
+            print(current_file+"\t1")
             line = sys.stdin.readline()
     except EOFError as error:
         return None
