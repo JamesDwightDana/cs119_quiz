@@ -11,7 +11,7 @@ def load_afinn_word_list (afinn_path):
                 afinn_word_list[word] = int(score)
     return afinn_word_list
 
-afinn_path = "~/afinn/afinn/data/AFINN-en-165.txt"
+afinn_path = "./afinn/afinn/data/AFINN-en-165.txt"
 afinn_word_list = load_afinn_word_list(afinn_path)
 
 def clean_text(text):
