@@ -47,10 +47,10 @@ def main(argv):
         return None
 
 if __name__ == "__main__":
-    afinn_path = "./afinn/AFINN-en-165.txt"
+    afinn_path = "~/afinn/afinn/data/AFINN-en-165.txt"
     try:
         afinn_word_list = load_afinn_word_list(afinn_path)
         main(sys.argv)
     except:
-        #print(str(os.path.isfile(afinn_path))+"\t1")
-        print(os.getcwd()+"\t1")
+        print("WRONG ADDRESS\t1")
+        main(sys.argv)
