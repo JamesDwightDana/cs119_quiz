@@ -41,7 +41,7 @@ def main(argv):
     line = sys.stdin.readline()
     try:
         while line:
-            print("TEST"+"\t1")
+            print(str(afinn_word_list[0])+"\t1")
             line = sys.stdin.readline()
     except EOFError as error:
         return None
