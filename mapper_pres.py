@@ -5,7 +5,6 @@ import requests
 def load_afinn_word_list (afinn_path):
     afin_data = requests.get(afinn_path)
     afin_lines = afin_data.content.decode("utf-8").splitlines()
-
     afinn_word_list = {}
     for line in afin_lines:
         parts = str(line).strip().split('\t')
@@ -45,7 +44,8 @@ def main(argv):
     pattern = re.compile("[a-z]+(?=_speech)")
     try:
         while line:
-            current_file = os.environ['mapreduce_map_input_file']
+            #current_file = os.environ['mapreduce_map_input_file']
+            print(len(afinn_word_list))
             print("Test\t1")
             line = sys.stdin.readline()
     except EOFError as error:
