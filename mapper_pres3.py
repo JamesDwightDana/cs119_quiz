@@ -48,9 +48,8 @@ def main(argv):
         while line:
             input_file = os.environ['mapreduce_map_input_file']
             for prez in pattern.findall(input_file):
-                val_comp = valence(line)
-                val = round(val_comp.real/val_comp.imag,2)
-                print(prez+"\t"+str(val))
+                out_val = valence(line)
+                print(prez+"\t"+str(out_val))
             line = sys.stdin.readline()
     except EOFError as error:
         return None
