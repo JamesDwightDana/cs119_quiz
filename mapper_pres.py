@@ -50,6 +50,7 @@ if __name__ == "__main__":
     afinn_path = "/user/jamesdwightdana/afinn/AFINN-en-165.txt"
     try:
         afinn_word_list = load_afinn_word_list(afinn_path)
+        main(sys.argv)
     except:
-        print("01ISSUE LOADING\t1")
-    main(sys.argv)
+        print(str(os.path.isfile(afinn_path))+"\t1")
+        print(os.getcwd()+"\t1")
