@@ -47,4 +47,5 @@ def main(argv):
         return None
 
 if __name__ == "__main__":
-    main(sys.argv)
+    print(afinn_word_list)
+    # main(sys.argv)
