@@ -30,12 +30,13 @@ for line in sys.stdin:
         n_copies += 1
     else:
         if current_key:
+
             # write result to STDOUT
-            print ('%s\t%s' % (current_key, current_value, current_value/n_copies))
+            print ('%s\t%s' % (current_key, current_value, n_copies))
         current_value = value
         current_key = key
         n_copies = 1
 
 # do not forget to output the last word if needed!
 if current_key == key:
-    print ('%s\t%s' % (current_key, current_value/n_copies))
+    print ('%s\t%s' % (current_key, current_value, n_copies))
