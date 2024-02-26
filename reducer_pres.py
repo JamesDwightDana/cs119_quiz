@@ -7,7 +7,7 @@ import sys
 current_key = None
 current_value = 0
 n_copies = 1
-word = None
+key = None
 
 # input comes from STDIN
 for line in sys.stdin:
