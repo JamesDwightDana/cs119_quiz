@@ -43,7 +43,7 @@ def main(argv):
         while line:
             input_file = os.environ['mapreduce_map_input_file']
             for prez in pattern.findall(input_file):
-                print(prez+"\t"+"1")
+                print(prez+"\t"+str(valence(line)))
             line = sys.stdin.readline()
     except EOFError as error:
         return None
