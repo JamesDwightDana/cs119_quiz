@@ -3,16 +3,18 @@ import os, sys, re, string
 
 def load_afinn_word_list (afinn_path):
     afinn_word_list = {}
+    counter = 0
     with open(afinn_path, 'r') as file:
         for line in file:
-            parts = str(line).strip().split('\t')
-            if len(parts) == 2:
-                word, score = parts
-                afinn_word_list[word] = int(score)
+            counter = counter + 1
+            #parts = str(line).strip().split('\t')
+            #if len(parts) == 2:
+            #    word, score = parts
+            #    afinn_word_list[word] = int(score)
     return afinn_word_list
 
-#afinn_path = 'AFINN-en-165.txt'
-#afinn_word_list = load_afinn_word_list(afinn_path)
+afinn_path = 'AFINN-en-165.txt'
+afinn_word_list = load_afinn_word_list(afinn_path)
 
 def main(argv):
     line = sys.stdin.readline()
