@@ -39,8 +39,7 @@ def main(argv):
     try:
         while line:
             input_file = os.environ['mapreduce_map_input_file']
-            for word in pattern.findall(input_file):
-                print (word + "\t" + "1")
+            print(input_file + "\t" + "1")
             line = sys.stdin.readline()
     except EOFError as error:
         return None
