@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 import os, sys, re, string
-import requests
 
 def load_afinn_word_list (afinn_path):
     afinn_word_list = {}
