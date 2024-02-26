@@ -4,7 +4,7 @@ import requests
 
 def load_afinn_word_list (afinn_path):
     afinn_word_list = {}
-    with open(afinn_path, 'r', encoding='utf-8') as file:
+    with open(afinn_path, 'r') as file:
         for line in file:
             parts = str(line).strip().split('\t')
             if len(parts) == 2:
