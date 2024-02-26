@@ -35,12 +35,12 @@ def valence(text):
 
 def main(argv):
     line = sys.stdin.readline()
-    pattern = re.compile("[a-zA-Z]+(?=_speeches_[0-9]{3}.txt)")
+    pattern = re.compile("[a-zA-Z]+(?=_speeches_[0-9][0-9][0-9].txt)")
     try:
         while line:
             input_file = os.environ['mapreduce_map_input_file']
             for prez in pattern.findall(input_file):
-                    print(prez+"\t"+"1")
+                print(prez+"\t"+"1")
             line = sys.stdin.readline()
     except EOFError as error:
         return None
