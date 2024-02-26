@@ -44,9 +44,11 @@ def main(argv):
     pattern = re.compile("[a-z]+(?=_speech)")
     try:
         while line:
-            #current_file = os.environ['mapreduce_map_input_file']
-            print(len(afinn_word_list))
-            print("Test\t1")
+            try:
+                #current_file = os.environ['mapreduce_map_input_file']
+                print(current_file+"\t"+1)
+            except:
+                print("ALT\t1")
             line = sys.stdin.readline()
     except EOFError as error:
         return None
