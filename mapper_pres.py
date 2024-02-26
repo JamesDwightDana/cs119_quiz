@@ -51,4 +51,6 @@ def main(argv):
         return None
 
 if __name__ == "__main__":
+    afinn_path = "./afinn/afinn/data/AFINN-en-165.txt"
+    afinn_word_list = load_afinn_word_list(afinn_path)
     main(sys.argv)
