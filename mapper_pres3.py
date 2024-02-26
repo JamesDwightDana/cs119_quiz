@@ -31,10 +31,15 @@ def calc_valence(text, afinn):
             val += complex(afinn[word], 1)
         except:
             pass
+
     return val 
 
 def valence(text):
-    return calc_valence(clean_text(text), afinn_word_list)
+    value = calc_valence(clean_text(text), afinn_word_list)
+    try:
+        return round(value.real/value.imag,2)
+    except:
+        return round(0,2)
 
 def main(argv):
     line = sys.stdin.readline()
