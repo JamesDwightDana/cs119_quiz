@@ -39,11 +39,8 @@ def main(argv):
     try:
         while line:
             input_file = os.environ['mapreduce_map_input_file']
-            try:
-                if pattern.findall(input_file):
-                    print(pattern.findall(input_file)[0]+"\t"+"1")
-            except:
-                pass
+            for prez in pattern.findall(input_file):
+                    print(prez+"\t"+"1")
             line = sys.stdin.readline()
     except EOFError as error:
         return None
