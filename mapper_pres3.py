@@ -13,6 +13,9 @@ def load_afinn_word_list (afinn_path):
                 afinn_word_list[word] = int(score)
     return afinn_word_list
 
+afinn_path = '/home/jamesdwightdana/AFINN-en-165.txt'
+afinn_word_list = load_afinn_word_list(afinn_path)
+
 def clean_text(text):
     text = text.lower()
     text = re.sub('\[.*?\]', '', text)
@@ -35,7 +38,7 @@ def valence(text):
 
 def main(argv):
     line = sys.stdin.readline()
-    pattern = re.compile("[a-zA-Z]+(?=_speeches_[0-9][0-9][0-9].txt)")
+    pattern = re.compile("[a-zA-Z]+(?=.tar.gz)")
     try:
         while line:
             input_file = os.environ['mapreduce_map_input_file']
@@ -46,7 +49,4 @@ def main(argv):
         return None
 
 if __name__ == "__main__":
-    afinn_path = '/home/jamesdwightdana/AFINN-en-165.txt'
-    afinn_word_list = load_afinn_word_list(afinn_path)
-
     main(sys.argv)
