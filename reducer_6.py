@@ -4,6 +4,7 @@
 from operator import itemgetter
 import sys
 
+line_count = 78251
 current_word = None
 current_count = 0
 word = None
@@ -30,10 +31,10 @@ for line in sys.stdin:
     else:
         if current_word:
             # write result to STDOUT
-            print ('%s\t%s' % (current_word, current_count))
+            print ('%s\t%s' % (current_word, round(current_count/line_count,4)))
         current_count = count
         current_word = word
 
 # do not forget to output the last word if needed!
 if current_word == word:
-    print ('%s\t%s' % (current_word, current_count))
+    print ('%s\t%s' % (current_word, round(current_count/line_count,4)))
