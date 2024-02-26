@@ -11,8 +11,8 @@ def load_afinn_word_list (afinn_path):
                 afinn_word_list[word] = int(score)
     return afinn_word_list
 
-afinn_path = 'AFINN-en-165.txt'
-afinn_word_list = load_afinn_word_list(afinn_path)
+#afinn_path = 'AFINN-en-165.txt'
+#afinn_word_list = load_afinn_word_list(afinn_path)
 
 def main(argv):
     line = sys.stdin.readline()
