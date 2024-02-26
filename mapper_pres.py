@@ -37,18 +37,16 @@ def calc_valence(text, afinn):
     return val 
 
 def valence(text):
-    return calc_valence(clean_text(text), afinn_word_list)
+    return calc_valence(clean_text(str(text)), afinn_word_list)
 
 def main(argv):
     line = sys.stdin.readline()
     pattern = re.compile("[a-z]+(?=_speech)")
     try:
         while line:
-            try:
-                #current_file = os.environ['mapreduce_map_input_file']
-                print("TEST"+"\t"+1)
-            except:
-                print("ALT\t1")
+            line_value = valence(line)
+            line_value = str(valence(line_value).real/valence(line_value).imag)
+            print("president\t"+line_value)
             line = sys.stdin.readline()
     except EOFError as error:
         return None
