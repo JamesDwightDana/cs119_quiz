@@ -26,7 +26,7 @@ def main(argv):
 
 if __name__ == "__main__":
 
-    afinn_path = '/user/jamesdwightdana/AFINN-en-165.txt'
+    afinn_path = '/home/jamesdwightdana/AFINN-en-165.txt'
     afinn_word_list = load_afinn_word_list(afinn_path)
 
     main(sys.argv)
