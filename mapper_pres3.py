@@ -35,7 +35,7 @@ def valence(text):
 
 def main(argv):
     line = sys.stdin.readline()
-    pattern = re.compile("[a-zA-Z]+(?=_speech)")
+    pattern = re.compile("[a-zA-Z]+(?=_speeches_[0-9]{3}.txt)")
     try:
         while line:
             input_file = os.environ['mapreduce_map_input_file']
