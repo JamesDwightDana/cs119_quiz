@@ -26,7 +26,6 @@ def main(argv):
         return None
 
 if __name__ == "__main__":
-
-    afinn_path = './afinn/AFINN-en-165.txt'
+    afinn_path = '/home/jamesdwightdana/afinn/afinn/AFINN-en-165.txt'
     with open(afinn_path, 'r', encoding='utf-8') as file:
         print(file.readline())
