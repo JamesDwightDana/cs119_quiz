@@ -40,7 +40,6 @@ def valence(text):
 def main(argv):
     line = sys.stdin.readline()
     # Fake First Line
-    print("STEP ONE\t1")
     pattern = "[a-z]+(?=_speeches)"
     try:
         while line:
@@ -51,6 +50,8 @@ def main(argv):
         return None
 
 if __name__ == "__main__":
-    afinn_path = "./afinn/afinn/data/AFINN-en-165.txt"
+    print("TEST1\t1")
+    afinn_path = "/user/jamesdwightdana/afinn/AFINN-en-165.txt"
+    print("TEST2\t2")
     afinn_word_list = load_afinn_word_list(afinn_path)
     main(sys.argv)
