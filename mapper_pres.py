@@ -39,9 +39,12 @@ def valence(text):
 
 def main(argv):
     line = sys.stdin.readline()
+    pattern = re.compile("[a-z]+(?=_speech)")
     try:
         while line:
-            print(valence(line))
+            current_file = os.environ['mapreduce_map_input_file']
+            for pres in pattern.findall(current_file):
+                print(pres+"\t"+valence(line))
             line = sys.stdin.readline()
     except EOFError as error:
         return None
