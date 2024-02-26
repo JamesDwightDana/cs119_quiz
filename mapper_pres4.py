@@ -2,11 +2,11 @@
 import os, sys, re, string
 
 def main(argv):
+    line = sys.stdin.readline()
     try:
         while line:
             input_file = os.environ['mapreduce_map_input_file']
-            cleaned = re.sub("[^a-zA-Z]+",'',input_file)
-            print(cleaned+"\t"+"1")
+            print(input_file)
             line = sys.stdin.readline()
     except EOFError as error:
         return None
