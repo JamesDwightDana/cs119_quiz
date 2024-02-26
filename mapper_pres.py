@@ -45,12 +45,9 @@ def main(argv):
     try:
         while line:
             for president in pattern.findall("roosevelt_speech/speech.txt"):
-                try:
-                    line_value = valence(line)
-                    line_value = str(line_value.real/line_value.imag)
-                    print("president\t"+line_value)
-                except:
-                    print("error\t1")
+                line_value = valence(line)
+                line_value = str(line_value.real/line_value.imag)
+                print("president\t"+line_value)
             line = sys.stdin.readline()
     except EOFError as error:
         return None
