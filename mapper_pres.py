@@ -44,9 +44,13 @@ def main(argv):
     pattern = re.compile("[a-z]+(?=_speech)")
     try:
         while line:
-            line_value = valence(line)
-            line_value = str(line_value.real/line_value.imag)
-            print("president\t"+line_value)
+            for president in pattern.findall(line):
+                try:
+                    line_value = valence(line)
+                    line_value = str(line_value.real/line_value.imag)
+                    print("president\t"+line_value)
+                except:
+                    print("error\t1")
             line = sys.stdin.readline()
     except EOFError as error:
         return None
