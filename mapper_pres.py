@@ -52,5 +52,5 @@ if __name__ == "__main__":
         afinn_word_list = load_afinn_word_list(afinn_path)
         main(sys.argv)
     except:
-        print(str(os.path.isfile(afinn_path))+"\t1")
+        #print(str(os.path.isfile(afinn_path))+"\t1")
         print(os.getcwd()+"\t1")
