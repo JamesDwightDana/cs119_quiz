@@ -25,7 +25,7 @@ def calc_valence(text, afinn):
     #
     # Write your program here
     #
-    words = text.split ()
+    words = text.split()
     val = (0+0j)
     for word in words:
         try:
@@ -60,10 +60,13 @@ def main(argv):
     pattern = "[a-z]+(?=_speeches)"
     try:
         while line:
-            current_file = os.environ['mapreduce_map_input_file']
-            for president in pattern.findall(current_file):
-                line_valence = valence(line)
-                print(president+":"+"\t"+line_valence.real/line_valence.imag)
+            try:
+                current_file = os.environ['mapreduce_map_input_file']
+                for president in pattern.findall(current_file):
+                    line_valence = valence(line)
+                    print(president+":"+"\t"+line_valence.real/line_valence.imag)
+            except:
+                pass
             line = sys.stdin.readline()
     except EOFError as error:
         return None
