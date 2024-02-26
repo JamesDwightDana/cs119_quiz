@@ -11,7 +11,7 @@ def load_afinn_word_list (afinn_path):
                 afinn_word_list[word] = int(score)
     return afinn_word_list
 
-afinn_path = "./afinn.txt"
+afinn_path = "../afinn/afinn/data/AFINN-en-165.txt"
 afinn_word_list = load_afinn_word_list(afinn_path)
 
 def clean_text(text):
@@ -49,11 +49,11 @@ def func_pgm_speeches(argv):
     print ("long line 1&2&3 valence", valence_sum_count.real/valence_sum_count.imag)
 
     valence_sum_count = (0+0j)
-    with open("./cleveland/cleveland_speeches_000.txt", 'r', encoding='utf-8') as file:
-        for line in file:
-            valence_sum_count += valence(line)
-            print ("./cleveland/cleveland_speeches_000.txt", line, valence_sum_count)
-        print ("./cleveland/cleveland_speeches_000.txt", valence_sum_count.real/valence_sum_count.imag)
+    #with open("./cleveland/cleveland_speeches_000.txt", 'r', encoding='utf-8') as file:
+    #    for line in file:
+    #        valence_sum_count += valence(line)
+    #        print ("./cleveland/cleveland_speeches_000.txt", line, valence_sum_count)
+    #    print ("./cleveland/cleveland_speeches_000.txt", valence_sum_count.real/valence_sum_count.imag)
 
 if __name__ == "__main__":
     func_pgm_speeches(sys.argv)
