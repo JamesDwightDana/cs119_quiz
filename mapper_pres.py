@@ -46,7 +46,7 @@ def main(argv):
         while line:
             try:
                 #current_file = os.environ['mapreduce_map_input_file']
-                print(current_file+"\t"+1)
+                print("TEST"+"\t"+1)
             except:
                 print("ALT\t1")
             line = sys.stdin.readline()
