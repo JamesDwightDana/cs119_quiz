@@ -37,36 +37,15 @@ def calc_valence(text, afinn):
 def valence(text):
     return calc_valence(clean_text(text), afinn_word_list)
 
-def func_pgm_speeches(argv):
-    valence_sum_count = (0+0j)
-    valence_sum_count += valence("In the presence of this vast assemblage of my countrymen I am about to supplement and seal by the oath which I shall take the manifestation of the will of a great and free people. In the exercise of their power and right of self-government they have committed to one of their fellow-citizens a supreme and sacred trust, and he here consecrates himself to their service.")
-    print ("long line 1 valence", valence_sum_count.real/valence_sum_count.imag)
-
-    valence_sum_count += valence("This impressive ceremony adds little to the solemn sense of responsibility with which I contemplate the duty I owe to all the people of the land. Nothing can relieve me from anxiety lest by any act of mine their interests may suffer, and nothing is needed to strengthen my resolution to engage every faculty and effort in the promotion of their welfare.")
-    print ("long line 1&2 valence", valence_sum_count.real/valence_sum_count.imag)
-
-    valence_sum_count += valence("Amid the din of party strife the people’s choice was made, but its attendant circumstances have demonstrated anew the strength and safety of a government by the people. In each succeeding year it more clearly appears that our democratic principle needs no apology, and that in its fearless and faithful application is to be found the surest guaranty of good government.")
-    print ("long line 1&2&3 valence", valence_sum_count.real/valence_sum_count.imag)
-
-    valence_sum_count = (0+0j)
-    with open("./cleveland/cleveland_speeches_000.txt", 'r', encoding='utf-8') as file:
-        for line in file:
-            valence_sum_count += valence(line)
-            print ("./cleveland/cleveland_speeches_000.txt", line, valence_sum_count)
-        print ("./cleveland/cleveland_speeches_000.txt", valence_sum_count.real/valence_sum_count.imag)
-
 def main(argv):
     line = sys.stdin.readline()
+    # Fake First Line
+    print("STEP ONE\t1")
     pattern = "[a-z]+(?=_speeches)"
     try:
         while line:
-            try:
-                current_file = os.environ['mapreduce_map_input_file']
-                for president in pattern.findall(current_file):
-                    line_valence = valence(line)
-                    print(president+":"+"\t"+line_valence.real/line_valence.imag)
-            except:
-                pass
+            current_file = os.environ['mapreduce_map_input_file']
+            print("TEST\t1")
             line = sys.stdin.readline()
     except EOFError as error:
         return None
