@@ -47,7 +47,7 @@ def main(argv):
         return None
 
 if __name__ == "__main__":
-    afinn_path = "~/afinn/afinn/data/AFINN-en-165.txt"
+    afinn_path = "./AFINN-en-165.txt"
     try:
         afinn_word_list = {}
         with open(afinn_path, 'r', encoding='utf-8') as file:
