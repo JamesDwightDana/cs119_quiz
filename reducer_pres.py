@@ -36,7 +36,6 @@ for line in sys.stdin:
                 pass
         current_value = value
         current_key = key
-        current_count = 1
 
 # do not forget to output the last word if needed!
 if current_key == key:
@@ -46,4 +45,3 @@ if current_key == key:
         print ('%s\t%s' % (current_key, average_value))
     except:
         pass
-    print ('%s\t%s' % (current_key, average_value))
