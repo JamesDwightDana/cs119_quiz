@@ -27,6 +27,7 @@ for line in sys.stdin:
         count = float(count)
     except ValueError:
         continue
+    
     # this IF-switch only works because Hadoop sorts map output
     # by key (here: word) before it is passed to the reducer
     if current_key == key:
