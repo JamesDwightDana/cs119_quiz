@@ -25,7 +25,7 @@ def calc_valence(text, afinn):
     #
     # Write your program here
     #
-    words = text.split ()
+    words = text.split()
     val = (0+0j)
     for word in words:
         try:

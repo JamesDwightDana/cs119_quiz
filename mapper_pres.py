@@ -24,7 +24,7 @@ def clean_text(text):
     return text
 
 def calc_valence(text, afinn):
-    words = text.split ()
+    words = text.split()
     val = (0+0j)
     for word in words:
         try:
@@ -38,17 +38,17 @@ def valence(text):
 
 def main(argv):
     line = sys.stdin.readline()
-    pattern = re.compile("[a-zA-Z]+(?=.tar.gz)")
+    pattern1 = re.compile("[a-zA-Z]+(?=.tar.gz)")
+    pattern2 = re.compile("[a-zA-Z]+")
     try:
         while line:
             input_file = os.environ['mapreduce_map_input_file']
-            for prez in pattern.findall(input_file):
-                try:
-                    out_val = valence(line)
-                    out_val = round(out_val.real/out_val.imag,4)
-                    print(prez+"\t"+str(out_val))
-                except:
-                    pass
+            for prez in pattern1.findall(input_file):
+                for word in pattern2.findall(line):
+                    try:
+                        print(prez+"\t"+valence(word))
+                    except:
+                        pass
             line = sys.stdin.readline()
     except EOFError as error:
         return None
