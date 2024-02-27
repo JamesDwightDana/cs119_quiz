@@ -37,9 +37,9 @@ def calc_valence(text, afinn):
 def valence(text):
     value = calc_valence(clean_text(text), afinn_word_list)
     try:
-        return round(value.real/value.imag,2)
+        return round(value.real/value.imag,4)
     except:
-        return round(0,2)
+        return round(0,4)
 
 def main(argv):
     line = sys.stdin.readline()
