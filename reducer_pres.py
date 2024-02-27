@@ -6,7 +6,7 @@ import sys
 
 current_key = None
 current_value = 0
-current_count = 1
+current_count = 0
 key = None
 
 
@@ -32,11 +32,11 @@ for line in sys.stdin:
     else:
         if current_key:
             # write result to STDOUT
-            print ('%s\t%s' % (current_key, current_value, current_count))
+            print ('%s\t%s\t%s' % (current_key, current_value, current_count))
         current_value = value
         current_key = key
-        current_count = 1
+        current_count = 0
 
 # do not forget to output the last word if needed!
 if current_key == key:
-    print ('%s\t%s' % (current_key, current_value, current_count))
+    print ('%s\t%s\t%s' % (current_key, current_value, current_count))
