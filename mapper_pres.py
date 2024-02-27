@@ -31,15 +31,10 @@ def calc_valence(text, afinn):
             val += complex(afinn[word], 1)
         except:
             pass
-
     return val 
 
 def valence(text):
-    value = calc_valence(clean_text(text), afinn_word_list)
-    try:
-        return round(value.real/value.imag,4)
-    except:
-        return round(0,4)
+    return calc_valence(clean_text(text), afinn_word_list)
 
 def main(argv):
     line = sys.stdin.readline()
@@ -48,8 +43,12 @@ def main(argv):
         while line:
             input_file = os.environ['mapreduce_map_input_file']
             for prez in pattern.findall(input_file):
-                out_val = valence(line)
-                print(prez+"\t"+str(out_val))
+                try:
+                    out_val = valence(line)
+                    out_val = round(out_val.real/out_val.imag,4)
+                    print(prez+"\t"+str(out_val))
+                except:
+                    pass
             line = sys.stdin.readline()
     except EOFError as error:
         return None
