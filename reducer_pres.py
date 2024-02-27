@@ -19,12 +19,12 @@ for line in sys.stdin:
 
     # convert count (currently a string) to int
     try:
-        value = complex(value)
+        value = float(value)
     except ValueError:
         continue
 
     try:
-        count = complex(count)
+        count = float(count)
     except ValueError:
         continue
     # this IF-switch only works because Hadoop sorts map output
