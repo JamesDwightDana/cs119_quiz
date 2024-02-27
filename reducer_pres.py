@@ -9,7 +9,6 @@ current_value = 0
 current_count = 0
 key = None
 
-
 # input comes from STDIN
 for line in sys.stdin:
     # remove leading and trailing whitespace
