@@ -32,11 +32,19 @@ for line in sys.stdin:
     else:
         if current_key:
             # write result to STDOUT
-            print ('%s\t%s\t%s' % (current_key, current_value, current_count))
+            try:
+                average_value = round(current_value/current_count,4)
+            except:
+                average_value = 0
+            print ('%s\t%s' % (current_key, average_value))
         current_value = value
         current_key = key
         current_count = 1
 
 # do not forget to output the last word if needed!
 if current_key == key:
-    print ('%s\t%s\t%s' % (current_key, current_value, current_count))
+    try:
+        average_value = round(current_value/current_count,4)
+    except:
+        average_value = 0
+    print ('%s\t%s' % (current_key, average_value))
