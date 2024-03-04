@@ -7,7 +7,6 @@ import re, string
 import requests
 stopwords_list = requests.get("https://gist.githubusercontent.com/rg089/35e00abf8941d72d419224cfd5b5925d/raw/12d899b70156fd0041fa9778d657330b024b959c/stopwords.txt").content
 tokens_irrel = set(stopwords_list.decode().splitlines()) 
-tokens_irrel = list(tokens_irrel)
 
 def clean_text(text):
     text = text.lower()
