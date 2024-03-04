@@ -5,9 +5,9 @@ import os
 import re, string
 
 import requests
-stopwords_list = requests.get("https://gist.githubusercontent.com/rg089/35e00abf8941d72d419224cfd5b5925d/raw/12d899b70156fd0041fa9778d657330b024b959c/stopwords.txt").content
-tokens_irrel = set(stopwords_list.decode().splitlines()) 
-tokens_irrel = list(tokens_irrel)
+#stopwords_list = requests.get("https://gist.githubusercontent.com/rg089/35e00abf8941d72d419224cfd5b5925d/raw/12d899b70156fd0041fa9778d657330b024b959c/stopwords.txt").content
+#tokens_irrel = set(stopwords_list.decode().splitlines()) 
+#tokens_irrel = list(tokens_irrel)
 
 def clean_text(text):
     text = text.lower()
@@ -41,9 +41,10 @@ def main(argv):
 
             # Get unique, relevant tokens
             #    In Python:   set A - set B  = {elements in A that aren't in B}
-            tokens_uq = list(set(tokens)-tokens_irrel)
+            #tokens_uq = list(set(tokens)-tokens_irrel)
+
             # Print token + filename + count
-            for tok in tokens_uq:
+            for tok in tokens:
                 print("mapper5\t%s\t%s\t%s" % (tok, filename, str(tokens.count(tok))))
             line = sys.stdin.readline()
     except EOFError as error:
