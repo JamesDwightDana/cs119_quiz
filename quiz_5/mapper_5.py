@@ -6,7 +6,7 @@ import re, string
 
 import nltk
 from nltk.corpus import stopwords
-
+nltk.download('stopwords')
 # Load Stopwords
 tokens_irrel = set(stopwords.words('english'))
 

@@ -39,7 +39,6 @@ def main(argv):
             # Get unique, relevant tokens
             #    In Python:   set A - set B  = {elements in A that aren't in B}
             tokens_uq = list(set(tokens)-tokens_irrel)
-            print(tokens_uq)
             # Print token + filename + count
             for tok in tokens_uq:
                 print("mapper5\t%s\t%s\t%s" % (tok, filename, str(tokens.count(tok))))
