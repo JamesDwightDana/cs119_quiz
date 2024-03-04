@@ -77,10 +77,10 @@ def get_TFIDF(dict_n):
     # Output the TF.IDF values
     for file in sorted(dict_n):
         print ('\n\nSPEECH:', file)
-        sorted_tfidf = dict( sorted(tfidf_dict[file].items(), key = lambda item: item[1], reverse = True))
-        for w in sorted_tfidf:
-            if sorted_tfidf[w] > 0.0:
-                print (w, sorted_tfidf[w])
+        sorted_tfidf_dict = dict(sorted(tfidf_dict[file].items(), key = lambda item: item[1], reverse = True))
+        # Print tokens + scores.
+        for token in sorted_tfidf_dict:
+            print (token, sorted_tfidf_dict[token])
 
 if __name__ == "__main__":
     main(sys.argv)
