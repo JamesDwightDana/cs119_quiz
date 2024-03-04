@@ -27,14 +27,16 @@ def main(argv):
     try:
         while line:
             # Get input file.
-            if 'mapreduce_map_input_file' in os.environ:
-                filepath = os.environ['mapreduce_map_input_file']
-                try:
-                    filename = get_filename(filepath)
-                except:
-                    filename = "placeholder"
-            else:
-                filename = "placeholder"
+            #if 'mapreduce_map_input_file' in os.environ:
+            #    filepath = os.environ['mapreduce_map_input_file']
+            #    try:
+            #        filename = get_filename(filepath)
+            #    except:
+            #        filename = "placeholder"
+            #else:
+            #    filename = "placeholder"
+
+            filename = "placeholder"
 
             # Get cleaned words from line (duplicates exist)!
             tokens = clean_text(line).split()
