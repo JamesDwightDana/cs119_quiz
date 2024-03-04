@@ -28,7 +28,7 @@ def main(argv):
     try:
         while line:
             # Get input file.
-            filepath = os.environ["map_input_file"]
+            filepath = os.environ['mapreduce_map_input_file']
             filename = get_filename(filepath)
 
             # Get cleaned words from line (duplicates exist)!
