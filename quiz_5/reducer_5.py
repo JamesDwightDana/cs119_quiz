@@ -9,26 +9,6 @@ import sys
 import numpy as np
 import functools
 
-def get_wordkeys(metadict):
-    wordset = {}
-    for file in metadict:
-        wordset.update(metadict[file])
-    return list(wordset.keys())
-
-def get_IDF(wordkeys, dict_n):
-    # Get number of documents.
-    N = len(dict_n)
-    # List of lists of unique words per document.
-    dict_1n = [list(set(dict_n[file])) for file in dict_n.keys()]
-    # Combine list of lists.
-    list_of_words = list(functools.reduce(lambda x,y: x+y, dict_1n))
-    # Set dict based on keys.
-    idf_dict = {}
-    for key in wordkeys:
-        idf_count = list_of_words.count(key)
-        idf_dict[key] = np.log((1+N)/(1+idf_count))+1
-    return idf_dict
-
 def main(argv):
     metadict = {}
     for line in sys.stdin:
@@ -48,8 +28,12 @@ def main(argv):
 
 def get_TFIDF(dict_n):
     # Setup
+    def get_wordkeys(metadict):
+        wordset = {}
+        for file in metadict:
+            wordset.update(metadict[file])
+        return list(wordset.keys())
     wordkeys = get_wordkeys(dict_n)
-    N = len(dict_n)
 
     # Function to get Term Frequency per document.
     def get_TF(wordkeys, dict_n):
@@ -64,7 +48,8 @@ def get_TFIDF(dict_n):
             return tf
         return {file:get_TF_per_dict(wordkeys,dict_n[file]) for file in dict_n.keys()}
     
-    def get_IDF(wordkeys, dict_n, N):
+    def get_IDF(wordkeys, dict_n):
+        N = len(dict_n)
         # List of lists of unique words per document.
         dict_1n = [list(set(dict_n[file])) for file in dict_n.keys()]
         # Combine list of lists.
