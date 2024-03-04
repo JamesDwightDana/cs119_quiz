@@ -36,9 +36,13 @@ def main(argv):
             #    filename = "placeholder"
 
             filename = "placeholder"
+            try:
+                print(os.environ['map_input_file'])
+            except:
+                pass
 
             # Get cleaned words from line (duplicates exist)!
-            tokens = re.findall('[a-z]+',clean_text(line))
+            tokens = re.findall('[a-z]+',clean_text(str(line)))
 
             # Get unique, relevant tokens
             #    In Python:   set A - set B  = {elements in A that aren't in B}
