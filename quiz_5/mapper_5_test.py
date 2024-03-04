@@ -33,7 +33,7 @@ def main(argv):
             filename = "placeholder"
 
             # Get cleaned words from line (duplicates exist)!
-            tokens = nltk.word_tokenize(clean_text(line))
+            tokens = re.findall('[a-z]+',clean_text(line))
 
             # Get unique, relevant tokens
             #    In Python:   set A - set B  = {elements in A that aren't in B}
