@@ -29,7 +29,10 @@ def main(argv):
             # Get input file.
             if 'mapreduce_map_input_file' in os.environ:
                 filepath = os.environ['mapreduce_map_input_file']
-                filename = get_filename(filepath)
+                try:
+                    filename = get_filename(filepath)
+                except:
+                    filename = "placeholder"
             else:
                 filename = "placeholder"
 
