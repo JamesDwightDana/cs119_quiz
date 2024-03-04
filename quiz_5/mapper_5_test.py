@@ -39,7 +39,7 @@ def main(argv):
             filename = "placeholder"
 
             # Get cleaned words from line (duplicates exist)!
-            tokens = clean_text(line).split()
+            tokens = re.findall('[a-z]+',clean_text(line))
 
             # Get unique, relevant tokens
             #    In Python:   set A - set B  = {elements in A that aren't in B}
@@ -47,7 +47,7 @@ def main(argv):
 
             # Print token + filename + count
             for tok in tokens:
-                print("mapper5\t%s\t%s\t%s" % (tok, filename, 1))
+                print("mapper5\t%s\t%s\t%s" % (tok, filename, str(tokens.count(tok))))
             line = sys.stdin.readline()
     except EOFError as error:
         return None
