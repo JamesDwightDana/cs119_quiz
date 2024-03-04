@@ -26,21 +26,11 @@ def main(argv):
     try:
         while line:
             # Get input file.
-            #if 'mapreduce_map_input_file' in os.environ:
-            #    filepath = os.environ['mapreduce_map_input_file']
-            #    try:
-            #        filename = get_filename(filepath)
-            #    except:
-            #        filename = "placeholder"
-            #else:
-            #    filename = "placeholder"
-
-            filename = "placeholder"
             try:
-                print(os.environ['map_input_file'])
+                filename = get_filename(os.environ['mapreduce_map_input_file'])
             except:
-                pass
-
+                filename = "placeholder"
+            
             # Get cleaned words from line (duplicates exist)!
             tokens = re.findall('[a-z]+',clean_text(str(line)))
 
