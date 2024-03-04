@@ -8,6 +8,7 @@ import nltk
 from nltk.corpus import stopwords
 
 # Load Stopwords
+nltk.download('stopwords')
 tokens_irrel = set(stopwords.words('english'))
 
 def clean_text(text):
