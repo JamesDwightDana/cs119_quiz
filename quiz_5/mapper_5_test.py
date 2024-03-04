@@ -37,7 +37,7 @@ def main(argv):
                 filename = "placeholder"
 
             # Get cleaned words from line (duplicates exist)!
-            tokens = clean_text(str(line)).split()
+            tokens = clean_text(line).split()
 
             # Get unique, relevant tokens
             #    In Python:   set A - set B  = {elements in A that aren't in B}
