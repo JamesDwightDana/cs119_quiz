@@ -47,7 +47,7 @@ def main(argv):
 
             # Print token + filename + count
             for tok in tokens:
-                print("mapper5\t%s\t%s\t%s" % (tok, filename, str(tokens.count(tok))))
+                print("mapper5\t%s\t%s\t%s" % (tok, filename, 1))
             line = sys.stdin.readline()
     except EOFError as error:
         return None
