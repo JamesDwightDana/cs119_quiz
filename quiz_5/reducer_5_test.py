@@ -26,7 +26,61 @@ def main(argv):
                 metadict[file].update({word:count})
         except ValueError:
             pass
-    print(metadict)
+    get_TFIDF(metadict)
+
+def get_TFIDF(dict_n):
+    # Setup
+    def get_wordkeys(metadict):
+        wordset = {}
+        for file in metadict:
+            wordset.update(metadict[file])
+        return list(wordset.keys())
+    wordkeys = get_wordkeys(dict_n)
+
+    # Function to get Term Frequency per document.
+    def get_TF(wordkeys, dict_n):
+        def get_TF_per_dict(wordkeys,dict_1):
+            # {key: 0} for all keys
+            tf = dict.fromkeys(wordkeys,0)
+            # Get total count of document.
+            total = sum(dict_1.values())
+            # Update with counts.
+            for key in dict_1.keys():
+                tf[key] = dict_1[key]/total
+            return tf
+        return {file:get_TF_per_dict(wordkeys,dict_n[file]) for file in dict_n.keys()}
+    
+    def get_IDF(wordkeys, dict_n):
+        N = len(dict_n)
+        # List of lists of unique words per document.
+        dict_1n = [list(set(dict_n[file])) for file in dict_n.keys()]
+        # Combine list of lists.
+        list_of_words = list(functools.reduce(lambda x,y: x+y, dict_1n))
+        # Get dict based on keys
+        idf_dict = {}
+        for key in wordkeys:
+            idf_count = list_of_words.count(key)
+            idf_dict[key] = np.log((1+N)/(1+idf_count))+1
+        return idf_dict
+    
+    # Term frequency is an N by K dictionary, where K is the total key count.
+    tf_dict = get_TF(wordkeys, dict_n)
+    # IDF is a K sized dictionary.
+    idf_dict = get_IDF(wordkeys, dict_n)
+
+    tfidf_dict = {}
+    for file in dict_n:
+        tfidf_dict[file] = {}
+        for key in wordkeys:
+            tfidf_dict[file][key] = tf_dict[file][key]*idf_dict[key]
+    
+    # Output the TF.IDF values
+    for file in sorted(dict_n):
+        print ('\n\nSPEECH:', file)
+        sorted_tfidf = dict( sorted(tfidf_dict[file].items(), key = lambda item: item[1], reverse = True))
+        for w in sorted_tfidf:
+            if sorted_tfidf[w] > 0.0:
+                print (w, sorted_tfidf[w])
 
 if __name__ == "__main__":
     main(sys.argv)
