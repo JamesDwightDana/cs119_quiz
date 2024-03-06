@@ -20,8 +20,17 @@ for line in sys.stdin:
             metadict[file].update({word:count})
         else:
             metadict[file] = {}
-            metadict[file].update({word:count})
-        print(metadict[file][word])
-        
+            metadict[file].update({word:count})        
     except ValueError:
         continue
+
+def get_terms_uq(metadict):
+    termset = {}
+    for file in metadict:
+        termset.update(metadict[file])
+    return list(termset.keys())
+
+terms_K = get_terms_uq(metadict)
+
+for term in terms_K:
+    print(term)
