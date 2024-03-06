@@ -29,20 +29,20 @@ def main(argv):
     #print(metadict)
     #get_TFIDF(metadict)
 
-def get_TFIDF(dict_n):
+#def get_TFIDF(dict_n):
 
     # get unique terms.
-    def get_terms_uq(metadict):
-        termset = {}
-        for file in metadict:
-            termset.update(metadict[file])
-        return list(termset.keys())
-    terms_K = get_terms_uq(dict_n)
+#    def get_terms_uq(metadict):
+#        termset = {}
+#        for file in metadict:
+#            termset.update(metadict[file])
+#        return list(termset.keys())
+#    terms_K = get_terms_uq(dict_n)
 
     # Define a N (documents) by K (terms) array
-    N = len(dict_n)
-    nn_index = dict_n.keys()
-    K = len(terms_K)
+#    N = len(dict_n)
+#    nn_index = dict_n.keys()
+#    K = len(terms_K)
     kk_index = terms_K
     score_array = np.zeros((N,K))
 
