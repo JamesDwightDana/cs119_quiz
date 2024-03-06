@@ -30,8 +30,11 @@ def main(argv):
                 filename = get_filename(os.environ['mapreduce_map_input_file'])
             else:
                 filename = "placeholder"
-            # Get input file.
-            print(line)
+            
+            tokens = re.findall('[a-z]+',clean_text(str(line)))
+            for tok in tokens:
+                print(filename,tok)
+            
             line = sys.stdin.readline()
     except EOFError as error:
         return None
