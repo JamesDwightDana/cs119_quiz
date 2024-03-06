@@ -33,9 +33,6 @@ def get_terms_uq(metadict):
 
 kk_index = get_terms_uq(metadict)
 K = len(kk_index)
-nn_index = metadict.keys()
-N = len(metadict)
-score_array = np.zeros((N,K))
 
 for key in kk_index:
     print(key)
