@@ -3,7 +3,6 @@
 
 from operator import itemgetter
 import sys
-import numpy
 
 metadict = {}
 for line in sys.stdin:
@@ -31,8 +30,22 @@ def get_terms_uq(metadict):
         termset.update(metadict[file])
     return list(termset.keys())
 
-kk_index = get_terms_uq(metadict)
-K = len(kk_index)
+term_keys = get_terms_uq(metadict)
 
-for key in kk_index:
-    print(key)
+# Function to get Term Frequency per document/term.
+def get_TF(wordkeys, dict_n):
+    def get_TF_per_dict(wordkeys,dict_1):
+        # {key: 0} for all keys
+        tf = dict.fromkeys(wordkeys,0)
+        # Get total count of document.
+        total = sum(dict_1.values())
+        # Update with counts.
+        for key in dict_1.keys():
+            tf[key] = dict_1[key]/total
+        return tf
+    return {file:get_TF_per_dict(wordkeys,dict_n[file]) for file in dict_n.keys()}
+
+tf_dict = get_TF(term_keys, metadict)
+
+for term in term_keys:
+    print(term)
