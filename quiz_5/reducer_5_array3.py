@@ -3,7 +3,6 @@
 
 from operator import itemgetter
 import sys
-import numpy as np
 
 metadict = {}
 for line in sys.stdin:
