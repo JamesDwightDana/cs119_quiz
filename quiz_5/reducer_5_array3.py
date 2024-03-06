@@ -28,7 +28,19 @@ def get_TFIDF(dict_n):
             except:
                 pass
 
-    print(score_array)
+    tf_array = np.array(
+        list(
+            map(lambda x: x/sum(x), score_array)
+        )
+    )
+
+    idf_array = np.array(
+        np.log(
+            (1 + N) / (1 + sum(score_array!=0))
+        ) + 1
+    )
+
+    print(idf_array)
 
 metadict = {}
 for line in sys.stdin:
