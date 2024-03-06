@@ -4,6 +4,7 @@
 from operator import itemgetter
 import sys
 import math
+import itertools
 
 metadict = {}
 for line in sys.stdin:
