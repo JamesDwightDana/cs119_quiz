@@ -3,7 +3,6 @@
 
 from operator import itemgetter
 import sys
-import numpy as np
 
 metadict = {}
 for line in sys.stdin:
@@ -22,7 +21,7 @@ for line in sys.stdin:
         else:
             metadict[file] = {}
             metadict[file].update({word:count})
+        print(metadict[file][word])
+        
     except ValueError:
         continue
-    
-print(metadict)
