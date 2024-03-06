@@ -11,19 +11,20 @@ def main(argv):
         # split input
         temp, word, file, count = line.strip().split('\t', 3)
         # convert count to int, store in metadict if blank, add to metadict if exists.
-        print(word,file,count)
-        
         try:
             count = int(count)
-            if file in metadict:
-                if word in metadict[file]:
-                    count += metadict[file][word]
-                metadict[file].update({word:count})
-            else:
-                metadict[file] = {}
-                metadict[file].update({word:count})
         except ValueError:
             pass
+        print(word,file,count)
+        
+
+    #if file in metadict:
+    #    if word in metadict[file]:
+    #        count += metadict[file][word]
+    #    metadict[file].update({word:count})
+    #else:
+    #    metadict[file] = {}
+    #    metadict[file].update({word:count})
 
     #print(metadict)
     #get_TFIDF(metadict)
