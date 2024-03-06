@@ -6,8 +6,7 @@ import sys
 import numpy as np
 
 for line in sys.stdin:
-    try:
-        line = line.strip()
-        print(line)
-    except:
-        continue
+    line = line.strip()
+
+    temp, file, term, count = line.split("\t",3)
+    print(file)
