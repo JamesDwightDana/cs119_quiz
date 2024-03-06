@@ -9,6 +9,7 @@ def main(argv):
     # Get dictionary of scores.
     for line in sys.stdin:
         try:
+            line = line.strip()
             print(line)
         except:
             continue
