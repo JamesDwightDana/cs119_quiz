@@ -11,11 +11,11 @@ def main(argv):
         # split input
         temp, word, file, count = line.strip().split('\t', 3)
         # convert count to int, store in metadict if blank, add to metadict if exists.
-        try:
-            count = int(count)
-        except ValueError:
-            pass
         print(word,file,count)
+        #try:
+        #    count = int(count)
+        #except ValueError:
+        #    pass
         
 
     #if file in metadict:
