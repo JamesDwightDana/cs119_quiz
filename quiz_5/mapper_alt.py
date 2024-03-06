@@ -17,7 +17,7 @@ def main(argv):
     try:
         while line:
             if "map_input_file" in os.environ:
-                filename = os.environ["map_input_file"]
+                filename = os.environ["mapreduce_map_input_file"]
                 phrase = line
             else:
                 try:
