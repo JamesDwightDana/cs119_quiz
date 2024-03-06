@@ -23,7 +23,7 @@ def main(argv):
         while line:
             # Get input file.
             if 'map_input_file' in os.environ:
-                filename = get_filename(os.environ['mapreduce_map_input_file'])
+                filename = os.environ['mapreduce_map_input_file']
             else:
                 filename = "placeholder"
             
