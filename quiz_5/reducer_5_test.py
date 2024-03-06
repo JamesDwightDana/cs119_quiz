@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 """reducer.py"""
 
-# python mapper.py < input.txt | sort | python reducer.py
-# hadoop jar /usr/lib/hadoop/hadoop-streaming.jar -files mapper.py,reducer.py -mapper mapper.py -reducer reducer.py -input /user/inputs/inaugs.tar.gz -output /user/j_singh/inaugs
-
 from operator import itemgetter
 import sys
 import numpy as np
@@ -37,7 +34,7 @@ def get_TFIDF(dict_n):
         return list(wordset.keys())
     wordkeys = get_wordkeys(dict_n)
 
-    # Function to get Term Frequency per document.
+    # Function to get Term Frequency per document/term.
     def get_TF(wordkeys, dict_n):
         def get_TF_per_dict(wordkeys,dict_1):
             # {key: 0} for all keys
@@ -50,6 +47,7 @@ def get_TFIDF(dict_n):
             return tf
         return {file:get_TF_per_dict(wordkeys,dict_n[file]) for file in dict_n.keys()}
     
+    # Function to get 
     def get_IDF(wordkeys, dict_n):
         N = len(dict_n)
         # List of lists of unique words per document.
@@ -80,7 +78,7 @@ def get_TFIDF(dict_n):
         sorted_tfidf_dict = dict(sorted(tfidf_dict[file].items(), key = lambda item: item[1], reverse = True))
         # Print tokens + scores.
         for token in sorted_tfidf_dict:
-            print (token, sorted_tfidf_dict[token])
+            print(token, sorted_tfidf_dict[token],sep="\t")
 
 if __name__ == "__main__":
     main(sys.argv)
