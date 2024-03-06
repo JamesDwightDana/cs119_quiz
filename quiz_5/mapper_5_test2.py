@@ -4,8 +4,8 @@ import sys
 import os
 import re, string
 
-#import requests
-#stopwords_list = requests.get("https://gist.githubusercontent.com/rg089/35e00abf8941d72d419224cfd5b5925d/raw/12d899b70156fd0041fa9778d657330b024b959c/stopwords.txt").content
+import requests
+stopwords_list = requests.get("https://gist.githubusercontent.com/rg089/35e00abf8941d72d419224cfd5b5925d/raw/12d899b70156fd0041fa9778d657330b024b959c/stopwords.txt").content
 #tokens_irrel = set(stopwords_list.decode().splitlines()) 
 
 def clean_text(text):
@@ -32,9 +32,9 @@ def main(argv):
                 filename = "placeholder"
             
             tokens = re.findall('[a-z]+',clean_text(str(line)))
+
             for tok in tokens:
                 print(filename,tok)
-            
             line = sys.stdin.readline()
     except EOFError as error:
         return None
