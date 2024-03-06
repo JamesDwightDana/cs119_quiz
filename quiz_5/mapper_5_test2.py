@@ -34,7 +34,7 @@ def main(argv):
 
             # Print token + filename + count
             for tok in tokens_uq:
-                print("mapper\t%s\t%s\t%s" % (tok, filename, str(tokens.count(tok))))
+                print("mapper\t%s\t%s\t%s" % (filename, tok, str(tokens.count(tok))))
             
             line = sys.stdin.readline()
     except EOFError as error:
