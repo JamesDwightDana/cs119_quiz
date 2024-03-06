@@ -9,9 +9,9 @@ def main(argv):
     metadict = {}
     for line in sys.stdin:
         # split input
-        temp, word, file, count = line.strip().split('\t', 3)
+        #temp, word, file, count = line.strip().split('\t', 3)
         # convert count to int, store in metadict if blank, add to metadict if exists.
-        print(word,file,count)
+        print(line.strip())
         #try:
         #    count = int(count)
         #except ValueError:
