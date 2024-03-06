@@ -35,8 +35,7 @@ def main(argv):
                 # Get cleaned words from line (duplicates exist)!
                 tokens = re.findall('[a-z]+',clean_text(str(line)))
 
-                # Get unique, relevant tokens
-                #    In Python:   set A - set B  = {elements in A that aren't in B}
+                # Get unique tokens.
                 tokens_uq = list(set(tokens))
 
                 # Print token + filename + count

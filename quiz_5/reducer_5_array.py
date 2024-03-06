@@ -22,7 +22,9 @@ def main(argv):
                 metadict[file].update({word:count})
         except ValueError:
             pass
-    get_TFIDF(metadict)
+
+    print(metadict)
+    #get_TFIDF(metadict)
 
 def get_TFIDF(dict_n):
 
