@@ -3,6 +3,7 @@
 
 import sys
 import numpy as np
+from operator import itemgetter
 
 def main(argv):
     # Get dictionary of scores.
