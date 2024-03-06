@@ -1,10 +1,8 @@
 #!/usr/bin/env python
 """reducer.py"""
 
-from operator import itemgetter
 import sys
 import numpy as np
-import functools
 
 def main(argv):
     # Get dictionary of scores.
@@ -24,9 +22,6 @@ def main(argv):
                 metadict[file].update({word:count})
         except ValueError:
             pass
-    # Turn
-
-
     get_TFIDF(metadict)
 
 def get_TFIDF(dict_n):
