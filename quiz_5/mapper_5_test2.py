@@ -12,17 +12,19 @@ def clean_text(text):
     return text
 
 def get_filename(filepath):
-    if re.findall('[a-z]*_[a-z]*-[0-9]*(?=.txt)',filepath):
-        return re.findall('[a-z]*_[a-z]*-[0-9]*(?=.txt)',filepath)[0]
+    if re.findall('[0-9]*-[a-zA-Z]*(?=.txt)',filepath):
+        return re.findall('[0-9]*-[a-zA-Z]*(?=.txt)',filepath)[0]
     else:
-        return os.environ['map_input_file']
+        return filepath
     
 def main(argv):
     line = sys.stdin.readline()
     try:
         while line:
-            # Get input file.
-            if 'map_input_file' in os.environ:
+            # Get input file name.
+            if 'mapreduce_map_input_file' in os.environ:
+                filename = get_filename(os.environ['mapreduce_map_input_file'])
+            elif 'map_input_file' in os.environ:
                 filename = get_filename(os.environ['map_input_file'])
             else:
                 filename = "placeholder"
