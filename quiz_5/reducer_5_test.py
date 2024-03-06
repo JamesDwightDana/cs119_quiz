@@ -75,7 +75,7 @@ def get_TFIDF(dict_n):
     # Output the TF.IDF values
     for file in sorted(dict_n):
         sorted_tfidf_dict = dict(sorted(tfidf_dict[file].items(), key = lambda item: item[1], reverse = True))
-        # Print tokens + scores.
+        # Print file + tokens + scores.
         for token in sorted_tfidf_dict:
             print(file, sorted_tfidf_dict[token],token,sep="\t")
 
