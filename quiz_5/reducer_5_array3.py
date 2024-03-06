@@ -3,6 +3,7 @@
 
 from operator import itemgetter
 import sys
+import numpy as np
 
 metadict = {}
 for line in sys.stdin:
@@ -30,7 +31,11 @@ def get_terms_uq(metadict):
         termset.update(metadict[file])
     return list(termset.keys())
 
-terms_K = get_terms_uq(metadict)
+kk_index = get_terms_uq(metadict)
+K = len(kk_index)
+nn_index = metadict.keys()
+N = len(metadict)
+score_array = np.zeros((N,K))
 
-for term in terms_K:
-    print(term)
+for key in kk_index:
+    print(key)
