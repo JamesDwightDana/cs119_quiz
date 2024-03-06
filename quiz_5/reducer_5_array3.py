@@ -15,14 +15,14 @@ for line in sys.stdin:
 
     try:
         count = int(count)
+        if file in metadict:
+            if word in metadict[file]:
+                count += metadict[file][word]
+            metadict[file].update({word:count})
+        else:
+            metadict[file] = {}
+            metadict[file].update({word:count})
     except ValueError:
         continue
-
-    if file in metadict:
-        if word in metadict[file]:
-            count += metadict[file][word]
-        metadict[file].update({word:count})
-    else:
-        metadict[file] = {}
-        metadict[file].update({word:count})
+    
 print(metadict)
