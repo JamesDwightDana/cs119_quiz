@@ -30,9 +30,12 @@ def main(argv):
                 filename = "placeholder"
             
             tokens = clean_text(str(line)).split()
+            tokens_uq = list(set(tokens))
 
-            for tok in tokens:
-                print(filename,tok)
+            # Print token + filename + count
+            for tok in tokens_uq:
+                print("mapper\t%s\t%s\t%s" % (tok, filename, str(tokens.count(tok))))
+            
             line = sys.stdin.readline()
     except EOFError as error:
         return None
