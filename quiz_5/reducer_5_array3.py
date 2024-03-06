@@ -3,9 +3,7 @@
 
 from operator import itemgetter
 import sys
-
-current_file = None
-current_count = 0
+import numpy as np
 
 metadict = {}
 for line in sys.stdin:
@@ -27,5 +25,28 @@ for line in sys.stdin:
     else:
         metadict[file] = {}
         metadict[file].update({word:count})
-        
-print(metadict)
+
+def get_TFIDF(dict_n):
+
+    def get_terms_uq(dict):
+        termset = {}
+        for file in dict:
+            termset.update(dict[file])
+            return list(termset.keys())
+    
+    terms_K = get_terms_uq(dict_n)
+
+    N = len(dict_n)
+    nn_index = dict_n.keys()
+    K = len(terms_K)
+    kk_index = terms_K
+    score_array = np.zeros((N,K))
+
+    for nn, file in enumerate(nn_index):
+        for kk, term in enumerate(kk_index):
+            try:
+                score_array[nn][kk] = dict_n[file][term]
+            except:
+                pass
+
+    print(score_array)
