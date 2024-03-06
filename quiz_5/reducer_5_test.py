@@ -77,7 +77,7 @@ def get_TFIDF(dict_n):
         sorted_tfidf_dict = dict(sorted(tfidf_dict[file].items(), key = lambda item: item[1], reverse = True))
         # Print tokens + scores.
         for token in sorted_tfidf_dict:
-            print(file, token, sorted_tfidf_dict[token],sep="\t")
+            print(file, sorted_tfidf_dict[token],token,sep="\t")
 
 if __name__ == "__main__":
     main(sys.argv)
