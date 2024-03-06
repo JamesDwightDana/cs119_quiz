@@ -12,8 +12,8 @@ def clean_text(text):
     return text
 
 def get_filename(filepath):
-    if re.findall('[a-z]*_[a-z]*_[0-9]*(?=.txt)',filepath):
-        return re.findall('[a-z]*_[a-z]*_[0-9]*(?=.txt)',filepath)[0]
+    if re.findall('[a-z]*_[a-z]*-[0-9]*(?=.txt)',filepath):
+        return re.findall('[a-z]*_[a-z]*-[0-9]*(?=.txt)',filepath)[0]
     else:
         return "placeholder"
     
@@ -22,8 +22,8 @@ def main(argv):
     try:
         while line:
             # Get input file.
-            if 'map_input_file' in os.environ:
-                filename = os.environ['mapreduce_map_input_file']
+            if 'mapreduce_map_input_file' in os.environ:
+                filename = get_filename(os.environ['mapreduce_map_input_file'])
             else:
                 filename = "placeholder"
             
