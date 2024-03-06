@@ -26,6 +26,6 @@ for line in sys.stdin:
             print ('%s\t%s' % (current_file, current_count))
         current_file = file
         current_count = count
-        
+
 if current_file == file:
     print('%s\t%s' % (current_file, current_count))
