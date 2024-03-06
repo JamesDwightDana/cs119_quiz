@@ -30,17 +30,19 @@ def main(argv):
                 filename = get_filename(os.environ['mapreduce_map_input_file'])
             except:
                 filename = "placeholder"
-            
-            # Get cleaned words from line (duplicates exist)!
-            tokens = re.findall('[a-z]+',clean_text(str(line)))
+            try:
+                # Get cleaned words from line (duplicates exist)!
+                tokens = re.findall('[a-z]+',clean_text(str(line)))
 
-            # Get unique, relevant tokens
-            #    In Python:   set A - set B  = {elements in A that aren't in B}
-            tokens_uq = list(set(tokens)-tokens_irrel)
+                # Get unique, relevant tokens
+                #    In Python:   set A - set B  = {elements in A that aren't in B}
+                tokens_uq = list(set(tokens)-tokens_irrel)
 
-            # Print token + filename + count
-            for tok in tokens_uq:
-                print("mapper5\t%s\t%s\t%s" % (tok, filename, str(tokens.count(tok))))
+                # Print token + filename + count
+                for tok in tokens_uq:
+                    print("mapper5\t%s\t%s\t%s" % (tok, filename, str(tokens.count(tok))))
+            except:
+                pass
             line = sys.stdin.readline()
     except EOFError as error:
         return None
