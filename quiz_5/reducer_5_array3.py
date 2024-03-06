@@ -5,27 +5,6 @@ from operator import itemgetter
 import sys
 import numpy as np
 
-metadict = {}
-for line in sys.stdin:
-    # remove leading and trailing whitespace
-    line = line.strip()
-
-    # parse the input we got from mapper.py
-    temp, file, word, count = line.split('\t', 3)
-
-    try:
-        count = int(count)
-    except ValueError:
-        continue
-
-    if file in metadict:
-        if word in metadict[file]:
-            count += metadict[file][word]
-        metadict[file].update({word:count})
-    else:
-        metadict[file] = {}
-        metadict[file].update({word:count})
-
 def get_TFIDF(dict_n):
 
     def get_terms_uq(dict):
@@ -50,3 +29,25 @@ def get_TFIDF(dict_n):
                 pass
 
     print(score_array)
+
+metadict = {}
+for line in sys.stdin:
+    # remove leading and trailing whitespace
+    line = line.strip()
+
+    # parse the input we got from mapper.py
+    temp, file, word, count = line.split('\t', 3)
+
+    try:
+        count = int(count)
+    except ValueError:
+        continue
+
+    if file in metadict:
+        if word in metadict[file]:
+            count += metadict[file][word]
+        metadict[file].update({word:count})
+    else:
+        metadict[file] = {}
+        metadict[file].update({word:count})
+get_TFIDF(metadict)
