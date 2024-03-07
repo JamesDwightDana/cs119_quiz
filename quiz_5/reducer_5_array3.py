@@ -43,7 +43,7 @@ def get_TF(wordkeys, dict_n):
         total = sum(dict_1.values())
         # Update with counts.
         for key in dict_1.keys():
-            tf[key] = dict_1[key]/total
+            tf[key] = round(float(dict_1[key]/total),4)
         return tf
     return {file:get_TF_per_dict(wordkeys,dict_n[file]) for file in dict_n.keys()}
 
@@ -67,14 +67,15 @@ def get_IDF(wordkeys, dict_n):
 # IDF is a K sized dictionary.
 idf_dict = get_IDF(term_keys, metadict)
 
+print(tf_dict)
+print(idf_dict)
+
 # Combine elements of TF and IDF
 tfidf_dict = {}
 for file in metadict:
     tfidf_dict[file] = {}
     for key in term_keys:
         tfidf_dict[file][key] = str(round(float(tf_dict[file][key])*float(idf_dict[key]),4))
-
-print(tfidf_dict)
 
 for file in tfidf_dict:
     sorted_tfidf_dict = dict(sorted(tfidf_dict[file].items(), key = lambda item: item[1], reverse = True))
