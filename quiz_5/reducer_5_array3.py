@@ -41,7 +41,6 @@ def get_TF(wordkeys, dict_n):
         tf = dict.fromkeys(wordkeys,float(0))
         # Get total count of document.
         total = float(sum(dict_1.values()))
-        print(str(len(dict_1))+"\t"+"Ex. tokens:"+"\t"+[x for x in dict_1][0]+"\t"+str(dict_1[[x for x in dict_1][0]])+"\t"+str(total)+"\t"+str(dict_1[[x for x in dict_1][0]]/total))
         # Update with counts.
         for key in dict_1.keys():
             tf[key] = dict_1[key]/total
@@ -50,10 +49,6 @@ def get_TF(wordkeys, dict_n):
 
 # Term frequency is an N by K dictionary, where K is the total key count.
 tf_dict = get_TF(term_keys, metadict)
-for file in tf_dict:
-    for key in term_keys:
-        if tf_dict[file][key] > 0.0:
-            print(file+"\t"+key+"\t"+format(tf_dict[file][key],".10f"))
 
 # Function to get 
 def get_IDF(wordkeys, dict_n):
@@ -81,4 +76,6 @@ for file in metadict:
 
 for file in tfidf_dict:
     sorted_tfidf_dict = dict(sorted(tfidf_dict[file].items(), key = lambda item: item[1], reverse = True))
-    #print(file+"\t"+token+"\t"+format(sorted_tfidf_dict[token], '.10f'))
+    for token in sorted_tfidf_dict:
+        if sorted_tfidf_dict[token] > 0:
+            print(file+"\t"+token+"\t"+format(sorted_tfidf_dict[token], '.5f'))
