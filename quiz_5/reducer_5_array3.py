@@ -79,4 +79,4 @@ for file in sorted(tfidf_dict):
     sorted_subdict = dict({k: v for k, v in sorted(subdict.items(), key=lambda item: item[1], reverse = True)})
     print("\n\n"+file)
     for token in sorted_subdict:
-            print(format(sorted_subdict[token], '.5f')+"\t"+token)
+            print(sorted_subdict[token]+"\t"+token)
