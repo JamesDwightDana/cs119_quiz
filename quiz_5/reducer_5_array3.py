@@ -38,12 +38,12 @@ term_keys = get_terms_uq(metadict)
 def get_TF(wordkeys, dict_n):
     def get_TF_per_dict(wordkeys,dict_1):
         # {key: 0} for all keys
-        tf = dict.fromkeys(wordkeys,0)
+        tf = dict.fromkeys(wordkeys,0.0)
         # Get total count of document.
         total = sum(dict_1.values())
         # Update with counts.
         for key in dict_1.keys():
-            tf[key] = round(float(dict_1[key]/total),4)
+            tf[key] = dict_1[key]/total
         return tf
     return {file:get_TF_per_dict(wordkeys,dict_n[file]) for file in dict_n.keys()}
 
@@ -61,14 +61,11 @@ def get_IDF(wordkeys, dict_n):
     idf_dict = {}
     for key in wordkeys:
         idf_count = list_of_words.count(key)
-        idf_dict[key] = float(math.log((1+N)/(1+idf_count))+1.0000)
+        idf_dict[key] = math.log((1+N)/(1+idf_count))+1
     return idf_dict
 
 # IDF is a K sized dictionary.
 idf_dict = get_IDF(term_keys, metadict)
-
-print(tf_dict)
-print(idf_dict)
 
 # Combine elements of TF and IDF
 tfidf_dict = {}
@@ -79,4 +76,7 @@ for file in metadict:
 
 for file in tfidf_dict:
     sorted_tfidf_dict = dict(sorted(tfidf_dict[file].items(), key = lambda item: item[1], reverse = True))
-    #print(sorted_tfidf_dict)
+
+    for token in sorted_tfidf_dict:
+        outline = file+"\t"+token+"\t"+format(sorted_tfidf_dict[token], '.4f')
+        print(outline)
