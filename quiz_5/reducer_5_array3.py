@@ -49,6 +49,10 @@ def get_TF(wordkeys, dict_n):
 
 # Term frequency is an N by K dictionary, where K is the total key count.
 tf_dict = get_TF(term_keys, metadict)
+for file in tf_dict:
+    for key in term_keys:
+        if tf_dict[file][key] > 0:
+            print(file+"\t"+key+"\t"+format(tf_dict[file][key],".10f"))
 
 # Function to get 
 def get_IDF(wordkeys, dict_n):
@@ -72,8 +76,7 @@ tfidf_dict = {}
 for file in metadict:
     tfidf_dict[file] = {}
     for key in term_keys:
-        print(file+"\t"+key+"\t"+format(tf_dict[file][key],".10f")+"\t"+format(idf_dict[key],".10f"))
-        tfidf_dict[file][key] = tf_dict[file][key]*idf_dict[key]
+        #tfidf_dict[file][key] = tf_dict[file][key]*idf_dict[key]
 
 for file in tfidf_dict:
     sorted_tfidf_dict = dict(sorted(tfidf_dict[file].items(), key = lambda item: item[1], reverse = True))
