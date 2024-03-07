@@ -49,7 +49,7 @@ def get_TF(wordkeys, dict_n):
 
 # Term frequency is an N by K dictionary, where K is the total key count.
 tf_dict = get_TF(term_keys, metadict)
-print(tf_dict)
+print(type(tf_dict['placeholder']['a']))
 # Function to get 
 def get_IDF(wordkeys, dict_n):
     N = len(dict_n)
@@ -66,7 +66,9 @@ def get_IDF(wordkeys, dict_n):
 
 # IDF is a K sized dictionary.
 idf_dict = get_IDF(term_keys, metadict)
-print(idf_dict)
+print(type(idf_dict['a']))
+
+print(tf_dict['placeholder']['a']*idf_dict['a'])
 
 # Combine elements of TF and IDF
 tfidf_dict = {}
