@@ -40,13 +40,13 @@ def get_TF(wordkeys, dict_n):
         # {key: 0} for all keys
         tf = dict.fromkeys(wordkeys,float(0))
         # Get total count of document.
-        total = sum(dict_1.values())
-        print(total)
+        total = float(sum(dict_1.values()))
+        print(str(len(dict_n))+"\t"+"Ex. tokens:"+"\t"+[x for x in dict_n][0]+"\t"+str(total))
         # Update with counts.
         for key in dict_1.keys():
             tf[key] = dict_1[key]/total
         return tf
-    return {file:get_TF_per_dict(wordkeys,dict_n[file]) for file in dict_n.keys()}
+    return {file:get_TF_per_dict(wordkeys,dict_n[file]) for file in dict_n}
 
 # Term frequency is an N by K dictionary, where K is the total key count.
 tf_dict = get_TF(term_keys, metadict)
