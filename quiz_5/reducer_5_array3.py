@@ -66,15 +66,4 @@ def get_IDF(wordkeys, dict_n):
 
 # IDF is a K sized dictionary.
 idf_dict = get_IDF(term_keys, metadict)
-
-# Combine elements of TF and IDF
-tfidf_dict = {}
-for file in metadict:
-    tfidf_dict[file] = {}
-    for key in term_keys:
-        tfidf_dict[file][key] = tf_dict[file][key]*idf_dict[key]
-
-for file in tfidf_dict:
-    sorted_tfidf_dict = dict(sorted(tfidf_dict[file].items(), key = lambda item: item[1], reverse = True))
-    for token in sorted_tfidf_dict:
-        print("%s\t%s\t%s" % (file, token, str(round(sorted_tfidf_dict[token],4))))
+print(tf_dict)
