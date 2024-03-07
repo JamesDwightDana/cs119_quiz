@@ -75,4 +75,5 @@ for file in metadict:
         tfidf_dict[file][key] = tf_dict[file][key]*idf_dict[key]
 
 for file in metadict:
+    sorted_tfidf_dict = dict(sorted(tfidf_dict[file].items(), key = lambda item: item[1], reverse = True))
     print(file)
