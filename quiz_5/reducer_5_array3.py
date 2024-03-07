@@ -77,4 +77,4 @@ for file in metadict:
 for file in tfidf_dict:
     sorted_tfidf_dict = dict(sorted(tfidf_dict[file].items(), key = lambda item: item[1], reverse = True))
     for token in sorted_tfidf_dict:
-        print("%s\t%s\t%s" % (file, token, str(sorted_tfidf_dict[token])))
+        print("%s\t%s\t%s" % (file, token, str(round(sorted_tfidf_dict[token],4))))
