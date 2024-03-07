@@ -61,7 +61,7 @@ def get_IDF(wordkeys, dict_n):
     idf_dict = {}
     for key in wordkeys:
         idf_count = list_of_words.count(key)
-        idf_dict[key] = math.log((1+N)/(1+idf_count))+1
+        idf_dict[key] = float(math.log((1+N)/(1+idf_count))+1.0000)
     return idf_dict
 
 # IDF is a K sized dictionary.
