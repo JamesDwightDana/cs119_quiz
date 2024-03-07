@@ -75,7 +75,8 @@ for file in metadict:
         tfidf_dict[file][key] = tf_dict[file][key]*idf_dict[key]
 
 for file in sorted(tfidf_dict):
-    sorted_tfidf_dict = dict(sorted(tfidf_dict[file].items(), key = lambda item: item[1], reverse = True))
-    for token in sorted_tfidf_dict:
-        if sorted_tfidf_dict[token] > 0.0:
-            print(file+"\t"+token+"\t"+format(sorted_tfidf_dict[token], '.5f'))
+    subdict = tfidf_dict[file]
+    sorted_subdict = dict({k: v for k, v in sorted(subdict.items(), key=lambda item: item[1], reverse = True)})
+    for token in sorted_subdict:
+        if sorted_subdict[token] > 0.0:
+            print(file+"\t"+token+"\t"+format(sorted_subdict[token], '.5f'))
