@@ -4,16 +4,6 @@ import sys
 import os
 import re, string
 
-def load_stopwords (afinn_path):
-    afinn_word_list = {}
-    with open(afinn_path, 'r') as file:
-        for line in file:
-            parts = line.decode('utf-8').strip().split('\t')
-            if len(parts) == 2:
-                word, score = parts
-                afinn_word_list[word] = int(score)
-    return afinn_word_list
-
 stopwords_path = '/home/jamesdwightdana/inaug_stopwords'
 f = open(stopwords_path)
 wordlines = f.readlines()
