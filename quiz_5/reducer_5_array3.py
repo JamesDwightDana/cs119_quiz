@@ -76,7 +76,12 @@ for file in metadict:
 
 for file in sorted(tfidf_dict):
     subdict = tfidf_dict[file]
-    sorted_subdict = dict({k: v for k, v in sorted(subdict.items(), key=lambda item: item[1], reverse = True)})
+
+    unsorted_keys = list(subdict.keys())
+    unsorted_values = list(subdict.values())
+    sorted_values, sorted_keys  = zip(*sorted(zip(unsorted_values,unsorted_keys),reverse=True))
+
     print("\n\n"+file)
-    for token in sorted_subdict:
-            print(sorted_subdict[token]+"\t"+token)
+    for ii, key in enumerate(sorted_keys):
+        if float(sorted_values[ii])>0.0:
+            print(key+"\t"+sorted_values[ii])
