@@ -38,9 +38,10 @@ term_keys = get_terms_uq(metadict)
 def get_TF(wordkeys, dict_n):
     def get_TF_per_dict(wordkeys,dict_1):
         # {key: 0} for all keys
-        tf = dict.fromkeys(wordkeys,0.0)
+        tf = dict.fromkeys(wordkeys,float(0))
         # Get total count of document.
         total = sum(dict_1.values())
+        print(total)
         # Update with counts.
         for key in dict_1.keys():
             tf[key] = dict_1[key]/total
@@ -51,7 +52,7 @@ def get_TF(wordkeys, dict_n):
 tf_dict = get_TF(term_keys, metadict)
 for file in tf_dict:
     for key in term_keys:
-        if tf_dict[file][key] > 0:
+        if tf_dict[file][key] > 0.0:
             print(file+"\t"+key+"\t"+format(tf_dict[file][key],".10f"))
 
 # Function to get 
