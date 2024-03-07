@@ -72,7 +72,7 @@ tfidf_dict = {}
 for file in metadict:
     tfidf_dict[file] = {}
     for key in term_keys:
-        tfidf_dict[file][key] = round(float(tf_dict[file][key])*float(idf_dict[key]),4)
+        tfidf_dict[file][key] = str(round(float(tf_dict[file][key])*float(idf_dict[key]),4))
 
 print(tfidf_dict)
 
