@@ -72,12 +72,11 @@ tfidf_dict = {}
 for file in metadict:
     tfidf_dict[file] = {}
     for key in term_keys:
-        tfidf_dict[file][key] = tf_dict[file][key]*idf_dict[key]
+        tfidf_dict[file][key] = format(tf_dict[file][key]*idf_dict[key],".5f")
 
 for file in sorted(tfidf_dict):
     subdict = tfidf_dict[file]
     sorted_subdict = dict({k: v for k, v in sorted(subdict.items(), key=lambda item: item[1], reverse = True)})
     print("\n\n"+file)
     for token in sorted_subdict:
-        if sorted_subdict[token] > float(0):
             print(format(sorted_subdict[token], '.5f')+"\t"+token)
