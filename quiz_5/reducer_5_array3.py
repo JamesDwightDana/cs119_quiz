@@ -41,7 +41,7 @@ def get_TF(wordkeys, dict_n):
         tf = dict.fromkeys(wordkeys,float(0))
         # Get total count of document.
         total = float(sum(dict_1.values()))
-        print(str(len(dict_n))+"\t"+"Ex. tokens:"+"\t"+[x for x in dict_1][0]+"\t"+str(total))
+        print(str(len(dict_1))+"\t"+"Ex. tokens:"+"\t"+[x for x in dict_1][0]+"\t"+format(dict_1[[x for x in dict_1][0]],".5f")+"\t"+str(total))
         # Update with counts.
         for key in dict_1.keys():
             tf[key] = dict_1[key]/total
