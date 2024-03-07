@@ -77,6 +77,7 @@ for file in metadict:
 for file in sorted(tfidf_dict):
     subdict = tfidf_dict[file]
     sorted_subdict = dict({k: v for k, v in sorted(subdict.items(), key=lambda item: item[1], reverse = True)})
+    print("\n\n"+file)
     for token in sorted_subdict:
-        if sorted_subdict[token] > 0.0:
-            print(file+"\t"+token+"\t"+format(sorted_subdict[token], '.5f'))
+        if sorted_subdict[token] > float(0):
+            print(format(sorted_subdict[token], '.5f')+"\t"+token)
