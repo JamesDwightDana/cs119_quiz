@@ -4,6 +4,21 @@ import sys
 import os
 import re, string
 
+def load_stopwords (afinn_path):
+    afinn_word_list = {}
+    with open(afinn_path, 'r') as file:
+        for line in file:
+            parts = line.decode('utf-8').strip().split('\t')
+            if len(parts) == 2:
+                word, score = parts
+                afinn_word_list[word] = int(score)
+    return afinn_word_list
+
+stopwords_path = '/home/jamesdwightdana/inaug_stopwords'
+f = open(stopwords_path)
+wordlines = f.readlines()
+words_exclude = set(map(lambda x: x.strip(),wordlines))
+
 def clean_text(text):
     text = text.lower()
     text = re.sub('\[.*?\]', '', text)
@@ -30,7 +45,7 @@ def main(argv):
                 filename = "placeholder"
             
             tokens = clean_text(str(line)).split()
-            tokens_uq = list(set(tokens))
+            tokens_uq = list(set(tokens)-words_exclude)
 
             # Print token + filename + count
             for tok in tokens_uq:
