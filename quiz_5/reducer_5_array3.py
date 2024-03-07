@@ -81,4 +81,5 @@ for file in tfidf_dict:
               token,
               format(tf_dict[file][token], '.4f'),
               format(idf_dict[token], '.4f'),
-              format(sorted_tfidf_dict[token], '.4f'))
+              format(sorted_tfidf_dict[token], '.4f'),
+              sep="\t")
