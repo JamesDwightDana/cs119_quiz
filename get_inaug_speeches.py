@@ -5,6 +5,9 @@ import nltk.corpus
 from nltk.corpus import inaugural
 nltk.download('inaugural')
 
+from nltk.corpus import stopwords
+nltk.download('stopwords')
+
 REPLACEMENTS = [
     (". ",   ".\n"),     # Add a newline after periods, to improve readability.
     ("Mr.\n", "Mr. "),    # Don't treat Mr. as end of sentence.
