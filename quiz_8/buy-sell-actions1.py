@@ -91,13 +91,12 @@ if __name__ == "__main__":
         )
     
     windowSpec10 = Window.orderBy(col("stamp")).rowsBetween(-9, 0)
-    stream_prices_GOOG = streaming_prices.select("stamp","date", "GOOG").withWatermark("50 seconds")
-
+    stream_prices_GOOG_10 = streaming_prices.select("stamp","date", "GOOG").withWatermark("50 seconds","5 seconds")
     # Start running the query that prints the running counts to the console
-    goog10Day = stream_prices_GOOG.groupBy(
-        window(stream_prices_GOOG.stamp, "50 seconds", "5 seconds"),
-        stream_prices_GOOG.date
-    ).avg(stream_prices_GOOG.GOOG)
+    goog10Day = stream_prices_GOOG_10.groupBy(
+        window(stream_prices_GOOG_10.stamp, "50 seconds", "5 seconds"),
+        stream_prices_GOOG_10.date
+    ).avg(stream_prices_GOOG_10.GOOG)
 
     query = goog10Day\
         .writeStream\
