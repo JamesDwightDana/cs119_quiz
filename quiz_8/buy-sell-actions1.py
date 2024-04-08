@@ -86,21 +86,20 @@ if __name__ == "__main__":
         .select(
             split(col("value"), "\t")[0].cast('timestamp').alias("stamp"),
             split(col("value"), "\t")[0].cast('string').alias("date"),
-            split(col("value"), "\t")[1].cast("double").alias("GOOG"),
-            split(col("value"), "\t")[2].cast("double").alias("MSFT")
+            split(col("value"), "\t")[1].cast("double").alias("priceg"),
+            split(col("value"), "\t")[2].cast("double").alias("pricem")
         )
     
-    windowSpec10 = Window.orderBy(col("stamp")).rowsBetween(-9, 0)
-    stream_prices_GOOG_10 = streaming_prices.select("stamp","date", "GOOG").withWatermark("50 seconds","5 seconds")
-    # Start running the query that prints the running counts to the console
-    goog10Day = stream_prices_GOOG_10.groupBy(
-        window(stream_prices_GOOG_10.stamp, "50 seconds", "5 seconds"),
-        stream_prices_GOOG_10.date
-    ).avg(stream_prices_GOOG_10.GOOG)
+    # Group the data by window and sender and compute the average of each group
+    goog10Day = streaming_prices.groupBy(
+        window(streaming_prices.stamp, "50 seconds", "5 seconds"),
+        streaming_prices.date
+    ).avg(streaming_prices.priceg)
 
+    # Start running the query that prints the running counts to the console
     query = goog10Day\
         .writeStream\
-        .outputMode("append") \
+        .outputMode('append')\
         .format('console')\
         .start()
         # To print more than 20 lines, add .option("numRows", 100000)\ after format('console')\
