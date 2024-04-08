@@ -116,7 +116,7 @@ if __name__ == "__main__":
             col("date"),
             lit(" "),
             col("msft_buysell"),
-            lit(" MSFT )]"))
+            lit(" MSFT )]")))
         .select("output")
     
     # Start running the query that prints the running counts to the console
