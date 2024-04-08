@@ -122,7 +122,7 @@ if __name__ == "__main__":
     # Start running the query that prints the running counts to the console
     query = prices_together\
         .writeStream\
-        .outputMode('complete')\
+        .outputMode("append") \
         .format('console')\
         .start()
         # To print more than 20 lines, add .option("numRows", 100000)\ after format('console')\
