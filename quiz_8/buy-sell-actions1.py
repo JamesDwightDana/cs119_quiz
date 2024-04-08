@@ -90,9 +90,9 @@ if __name__ == "__main__":
         )
     
     window_spec_10_day = Window.orderBy("date").rangeBetween(-9, 0)
-    stream_prices_GOOG = streaming_prices.select("date", "GOOG").withWatermark("date", "1 minute")
+    stream_prices_GOOG = streaming_prices.select("date", "GOOG")
     goog10Day = stream_prices_GOOG.withColumn("GOOG_10",avg("GOOG").over(window_spec_10_day))
-    
+
     # Start running the query that prints the running counts to the console
     query = goog10Day\
         .writeStream\
