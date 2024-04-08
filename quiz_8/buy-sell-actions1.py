@@ -83,9 +83,9 @@ if __name__ == "__main__":
 
     # Split the lines into words
     data_prices = streaming_prices.select(
-        split(col("value"), " ")[0].timestamp.alias("date"),
-        split(col("value"), " ")[1].cast("double").alias("GOOG"),
-        split(col("value"), " ")[2].cast("double").alias("MSFT")
+        split(col("value"), "\t")[0].timestamp.alias("date"),
+        split(col("value"), "\t")[1].cast("double").alias("GOOG"),
+        split(col("value"), "\t")[2].cast("double").alias("MSFT")
     )
 
     stream_prices_GOOG = data_prices.select("date", "GOOG").withWatermark("date", "1 minute")
