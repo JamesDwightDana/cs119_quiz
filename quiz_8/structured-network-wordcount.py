@@ -34,9 +34,8 @@ from pyspark.conf import SparkConf
 from pyspark.context import SparkContext
 from pyspark.sql import SparkSession
 
-from pyspark.sql.functions import *
-from pyspark.sql.types import *
-from pyspark.sql import Window
+from pyspark.sql.functions import explode
+from pyspark.sql.functions import split
 
 def setLogLevel(sc, level):
     from pyspark.sql import SparkSession
@@ -60,7 +59,7 @@ if __name__ == "__main__":
     time.sleep(15)
     print ('Ready to work!')
 
-    ctx = pyspark.SparkContext(appName = "Price Work", master="local[*]")
+    ctx = pyspark.SparkContext(appName = "Netcat Wordcount", master="local[*]")
     print ('Context', ctx)
 
     spark = SparkSession(ctx).builder.getOrCreate()
@@ -74,29 +73,28 @@ if __name__ == "__main__":
     # sc = SparkContext(conf=conf)
 
     # Create DataFrame representing the stream of input lines from connection to host:port
-    inputstream = spark\
+    lines = spark\
         .readStream\
         .format('socket')\
         .option('host', host)\
         .option('port', port)\
-        .option("delimiter", "\t") \
         .load()
-    
-    streaming_prices = inputstream\
-        .select(
-            split(col("value"), "\t")[0].alias("date"),
-            split(col("value"), "\t")[1].cast("double").alias("GOOG"),
-            split(col("value"), "\t")[2].cast("double").alias("MSFT")
-        )
-    
-    window_spec_10_day = Window.orderBy("date").rangeBetween(-9, 0)
-    stream_prices_GOOG = streaming_prices.select("date", "GOOG").withWatermark("date", "1 minute")
-    goog10Day = stream_prices_GOOG.withColumn("GOOG_10",avg("GOOG").over(window_spec_10_day))
-    
+
+    # Split the lines into words
+    words = lines.select(
+        # explode turns each item in an array into a separate row
+        explode(
+            split(lines.value, ' ')
+        ).alias('word')
+    )
+
+    # Generate running word count
+    wordCounts = words.groupBy('word').count()
+
     # Start running the query that prints the running counts to the console
-    query = goog10Day\
+    query = wordCounts\
         .writeStream\
-        .outputMode("append") \
+        .outputMode('complete')\
         .format('console')\
         .start()
         # To print more than 20 lines, add .option("numRows", 100000)\ after format('console')\
