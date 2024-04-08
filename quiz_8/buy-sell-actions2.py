@@ -94,7 +94,6 @@ if __name__ == "__main__":
 
     # Group the data by window and sender and compute the average of each group
     goog10Day = streaming_prices \
-                    .select(col("stamp"),col("priceg")) \
                     .agg(min(col("stamp")),max(col("stamp")))
 
     # Start running the query that prints the running counts to the console
