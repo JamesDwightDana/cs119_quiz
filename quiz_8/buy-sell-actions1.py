@@ -73,8 +73,6 @@ if __name__ == "__main__":
     
     # sc = SparkContext(conf=conf)
 
-    schema = "date TIMESTAMP, GOOG DOUBLE, MSFT DOUBLE"
-
     # Create DataFrame representing the stream of input lines from connection to host:port
     streaming_prices = spark\
         .readStream\
@@ -82,23 +80,10 @@ if __name__ == "__main__":
         .option('host', host)\
         .option('port', port)\
         .option("delimiter", "\t") \
-        .schema(schema) \
         .load()
-
-    # Split the lines into words
-    data_prices = streaming_prices.select("date","GOOG","MSFT")
-
-    stream_prices_GOOG = data_prices.select("date", "GOOG").withWatermark("date", "1 minute")
-
-    # Step 5: Calculate rolling averages using window functions
-    window_spec_10_day = Window.orderBy("date").rangeBetween(-9, 0)
-
-    goog10Day = stream_prices_GOOG \
-        .withColumn("GOOG_10",avg("GOOG").over(window_spec_10_day)) \
-        .select("date","GOOG_10")
-
+    
     # Start running the query that prints the running counts to the console
-    query = goog10Day\
+    query = streaming_prices\
         .writeStream\
         .outputMode("append") \
         .format('console')\
