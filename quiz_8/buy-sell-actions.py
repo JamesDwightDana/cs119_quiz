@@ -83,7 +83,7 @@ if __name__ == "__main__":
 
     # Split the lines into words
     data_prices = streaming_prices.select(
-        split(col("value"), " ")[0].alias("date"),
+        split(col("value"), " ")[0].cast("timestamp").alias("date"),
         split(col("value"), " ")[1].cast("double").alias("GOOG"),
         split(col("value"), " ")[2].cast("double").alias("MSFT")
     )
@@ -109,11 +109,11 @@ if __name__ == "__main__":
         .withColumn("msft_buysell", when(col("MSFT_10") > col("MSFT_40"), "buy").otherwise("sell")) \
         .withColumn("output",concat(
             lit("[( "),
-            col("date"),
+            col("date").cast("string"),
             lit(" "),
             col("goog_buysell"),
             lit(" GOOG ), ( "),
-            col("date"),
+            col("date").cast("string"),
             lit(" "),
             col("msft_buysell"),
             lit(" MSFT )]"))) \
