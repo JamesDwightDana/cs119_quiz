@@ -94,13 +94,13 @@ if __name__ == "__main__":
 
     # Group the data by window and sender and compute the average of each group
     goog10Day = streaming_prices \
-                    .select(col("date"),col("priceg")) \
-                    .sort(col("date"))
+                    .select(col("stamp"),col("priceg")) \
+                    .agg(min(col("stamp")),max(col("stamp")))
 
     # Start running the query that prints the running counts to the console
     query = goog10Day\
         .writeStream\
-        .outputMode('complete')\
+        .outputMode('append')\
         .format('console')\
         .start()
         # To print more than 20 lines, add .option("numRows", 100000)\ after format('console')\
