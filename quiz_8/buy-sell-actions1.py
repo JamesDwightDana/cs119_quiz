@@ -83,17 +83,15 @@ if __name__ == "__main__":
 
     # Split the lines into words
     data_prices = streaming_prices.select(
-        split(col("value"), " ")[0].alias("date"),
+        split(col("value"), " ")[0].timestamp.alias("date"),
         split(col("value"), " ")[1].cast("double").alias("GOOG"),
         split(col("value"), " ")[2].cast("double").alias("MSFT")
     )
 
     stream_prices_GOOG = data_prices.select("date", "GOOG").withWatermark("date", "1 minute")
-    stream_prices_MSFT = data_prices.select("date", "MSFT").withWatermark("date", "1 minute")
 
     # Step 5: Calculate rolling averages using window functions
     window_spec_10_day = Window.orderBy("date").rangeBetween(-9, 0)
-    window_spec_40_day = Window.orderBy("date").rangeBetween(-39, 0)
 
     goog10Day = stream_prices_GOOG \
         .withColumn("GOOG_10",avg("GOOG").over(window_spec_10_day)) \
