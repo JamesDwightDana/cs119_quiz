@@ -84,16 +84,21 @@ if __name__ == "__main__":
     
     streaming_prices = inputstream\
         .select(
-            split(col("value"), "\t")[0].cast('timestamp').alias("date"),
+            split(col("value"), "\t")[0].cast('timestamp').alias("stamp"),
+            split(col("value"), "\t")[0].cast('string').alias("date"),
             split(col("value"), "\t")[1].cast("double").alias("GOOG"),
             split(col("value"), "\t")[2].cast("double").alias("MSFT")
         )
     
-    windowSpec10 = Window.orderBy(col("date")).rowsBetween(-9, 0)
-    stream_prices_GOOG = streaming_prices.select("date", "GOOG")
-    goog10Day = stream_prices_GOOG.withColumn("GOOG_10",avg(col("GOOG")).over(windowSpec10))
+    windowSpec10 = Window.orderBy(col("stamp")).rowsBetween(-9, 0)
+    stream_prices_GOOG = streaming_prices.select("stamp","date", "GOOG")
 
     # Start running the query that prints the running counts to the console
+    goog10Day = stream_prices_GOOG.groupBy(
+        window(stream_prices_GOOG.stamp, "50 seconds", "5 seconds"),
+        stream_prices_GOOG.date
+    ).avg(stream_prices_GOOG.GOOG)
+
     query = goog10Day\
         .writeStream\
         .outputMode("append") \
