@@ -90,9 +90,12 @@ if __name__ == "__main__":
             split(col("value"), "\t")[2].cast("double").alias("pricem")
         )
     
+    streaming_prices_with_watermark = streaming_prices \
+            .withWatermark("stamp", "50 seconds")
+
     # Group the data by window and sender and compute the average of each group
     goog10Day = streaming_prices.groupBy(
-        window(streaming_prices.stamp, "50 seconds", "5 seconds"),
+        window(streaming_prices.stamp, "50 seconds"),
         streaming_prices.date
     ).agg(avg(streaming_prices.priceg).alias("g10"))
 
