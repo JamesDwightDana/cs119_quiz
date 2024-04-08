@@ -92,8 +92,8 @@ if __name__ == "__main__":
     stream_prices_MSFT = data_prices.select("date", "MSFT").withWatermark("date", "1 minute")
 
     # Step 5: Calculate rolling averages using window functions
-    window_spec_10_day = Window.orderBy("date").rowsBetween(-9, 0)
-    window_spec_40_day = Window.orderBy("date").rowsBetween(-39, 0)
+    window_spec_10_day = Window.orderBy("date").rangeBetween(-9, 0)
+    window_spec_40_day = Window.orderBy("date").rangeBetween(-39, 0)
 
     goog10Day = stream_prices_GOOG.withColumn("GOOG_10",avg("GOOG").over(window_spec_10_day))
     goog40Day = stream_prices_GOOG.withColumn("GOOG_40",avg("GOOG").over(window_spec_40_day))
