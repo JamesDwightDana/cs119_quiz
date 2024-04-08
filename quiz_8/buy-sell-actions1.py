@@ -84,7 +84,7 @@ if __name__ == "__main__":
     
     streaming_prices = inputstream\
         .select(
-            split(col("value"), " ")[0].alias("date")
+            split(col("value"), "\t")[0].alias("date")
         )
     
     # Start running the query that prints the running counts to the console
