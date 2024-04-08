@@ -91,7 +91,7 @@ if __name__ == "__main__":
         )
     
     windowSpec10 = Window.orderBy(col("stamp")).rowsBetween(-9, 0)
-    stream_prices_GOOG = streaming_prices.select("stamp","date", "GOOG")
+    stream_prices_GOOG = streaming_prices.select("stamp","date", "GOOG").withWatermark("50 seconds")
 
     # Start running the query that prints the running counts to the console
     goog10Day = stream_prices_GOOG.groupBy(
