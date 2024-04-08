@@ -94,10 +94,11 @@ if __name__ == "__main__":
             .withWatermark("stamp", "50 seconds")
 
     # Group the data by window and sender and compute the average of each group
-    goog10Day = streaming_prices.groupBy(
-        window(streaming_prices.stamp, "50 seconds"),
-    ).agg(avg(streaming_prices.priceg).alias("g10"),
-          count(streaming_prices.priceg).alias("g10c"))
+    goog10Day = streaming_prices_with_watermark \
+                    .groupBy(window("timestamp", "50 seconds")) \
+                    .agg(
+                        avg(streaming_prices.priceg).alias("g10"),
+                        count(streaming_prices.priceg).alias("g10c"))
 
     # Start running the query that prints the running counts to the console
     query = goog10Day\
