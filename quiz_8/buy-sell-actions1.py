@@ -74,7 +74,7 @@ if __name__ == "__main__":
     # sc = SparkContext(conf=conf)
 
     # Create DataFrame representing the stream of input lines from connection to host:port
-    streaming_prices = spark\
+    inputstream = spark\
         .readStream\
         .format('socket')\
         .option('host', host)\
@@ -82,10 +82,10 @@ if __name__ == "__main__":
         .option("delimiter", "\t") \
         .load()
     
-    streaming_prices = streaming_prices\
-        .withColumn(
-            "date", col("value").split(" ")[0]
-        ).select("date")
+    streaming_prices = inputstream\
+        .select(
+            split(col("value"), " ")[0].alias("date")
+        )
     
     # Start running the query that prints the running counts to the console
     query = streaming_prices\
