@@ -73,20 +73,20 @@ if __name__ == "__main__":
     
     # sc = SparkContext(conf=conf)
 
+    schema = "date TIMESTAMP, GOOG DOUBLE, MSFT DOUBLE"
+
     # Create DataFrame representing the stream of input lines from connection to host:port
     streaming_prices = spark\
         .readStream\
         .format('socket')\
         .option('host', host)\
         .option('port', port)\
+        .option("delimiter", "\t") \
+        .schema(schema) \
         .load()
 
     # Split the lines into words
-    data_prices = streaming_prices.select(
-        split(col("value"), "\t")[0].timestamp.alias("date"),
-        split(col("value"), "\t")[1].cast("double").alias("GOOG"),
-        split(col("value"), "\t")[2].cast("double").alias("MSFT")
-    )
+    data_prices = streaming_prices.select("date","GOOG","MSFT")
 
     stream_prices_GOOG = data_prices.select("date", "GOOG").withWatermark("date", "1 minute")
 
