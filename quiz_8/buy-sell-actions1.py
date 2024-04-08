@@ -82,6 +82,11 @@ if __name__ == "__main__":
         .option("delimiter", "\t") \
         .load()
     
+    streaming_prices = streaming_prices\
+        .withColumn(
+            "date", col("value").split(" ")[0]
+        ).select("date")
+    
     # Start running the query that prints the running counts to the console
     query = streaming_prices\
         .writeStream\
